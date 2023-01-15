@@ -1,5 +1,7 @@
 *{box-sizing:border-box;padding:0;margin:0;}
-html,body,#root{width:95vw;height:100vh;position:relative;display:grid;justify-items:center;}
+html,body,#root{width:95vw;height:100vh;position:relative;display:grid;justify-items:center;
+background-color:#d1d1d1;
+}
 :root{
 --pokemonCardBorderColor:rgb(78, 78, 78);
 --pokemonCardBorderBackground:rgb(168, 168, 168);
