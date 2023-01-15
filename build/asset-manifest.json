@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/m1chae1m.github.io/training_of_fetch_API/build/static/css/main.eb0b4e9f.css",
+    "main.js": "/m1chae1m.github.io/training_of_fetch_API/build/static/js/main.13621633.js",
+    "index.html": "/m1chae1m.github.io/training_of_fetch_API/build/index.html",
+    "main.eb0b4e9f.css.map": "/m1chae1m.github.io/training_of_fetch_API/build/static/css/main.eb0b4e9f.css.map",
+    "main.13621633.js.map": "/m1chae1m.github.io/training_of_fetch_API/build/static/js/main.13621633.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eb0b4e9f.css",
+    "static/js/main.13621633.js"
+  ]
+}
