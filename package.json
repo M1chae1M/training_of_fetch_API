@@ -1,7 +1,7 @@
 {
   "name": "flags",
   "version": "0.1.0",
-  "homepage": "m1chae1m.github.io/training_of_fetch_API/build",
+  "homepage": "https://m1chae1m.github.io/training_of_fetch_API/build",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
