@@ -20,7 +20,6 @@ class PokemonCardRender extends React.Component{
                 backgroundColor:'var(--pokemonCardBorderColor)',
                 overflow:'hidden',
                 background:'linear-gradient(348deg,var(--pokemonCardBorderColor) 0%,var(--pokemonCardBorderBackground) 20%)',
-                // backgroundColor:'var(--pokemonCardBorderBackground)',
             },
             imgDiv:{
                 height:'100px',

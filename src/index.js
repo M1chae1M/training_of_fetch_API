@@ -9,8 +9,6 @@ class RenderAndApiURL extends React.Component{
         numberOfPage:0,
         allFetchesInTableState:[],
         displayedPokemonsOnPage:100,
-        // displayedPokemonsOnPage:300,
-        // displayedPokemonsOnPage:5,
     }
     componentDidMount(){
         const allFetchesInTable=[];
@@ -23,11 +21,36 @@ class RenderAndApiURL extends React.Component{
         }
     }
     render(){
+        const fetchFunction=(targ)=>{
+            const allFetchesInTable=[];
+            if(targ>0){
+                for(let i=this.state.numberOfPage*targ+1;i<=targ;i++){
+                    let url='https://pokeapi.co/api/v2/pokemon/'+i
+                    fetch(url)
+                    .then((res)=>res.json())
+                    .then((res)=>allFetchesInTable.push(new Pokemon(res.id,res.name,res.types,res.weight)))
+                    .then((res)=>this.setState({allFetchesInTableState:allFetchesInTable}))
+                }
+            }
+            else{
+                this.setState({allFetchesInTableState:[]});
+            }
+        }
+
+        let timeoutID;
+        const debounce=(e)=>{
+            if(timeoutID){clearTimeout(timeoutID)}
+            timeoutID=setTimeout(()=>{
+                fetchFunction(parseInt(e.target.value));
+                this.setState({displayedPokemonsOnPage:parseInt(e.target.value)});
+            },1000);
+        }
         return(
-                <App
-                    displayedPokemonsOnPage={this.state.displayedPokemonsOnPage}
-                    allFetches={this.state.allFetchesInTableState}
-                />
+            <App
+                displayedPokemonsOnPage={this.state.displayedPokemonsOnPage}
+                allFetches={this.state.allFetchesInTableState}
+                debounce={debounce}
+            />
         );
     }
 }

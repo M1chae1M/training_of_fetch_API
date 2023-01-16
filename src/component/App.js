@@ -1,6 +1,6 @@
 import React from 'react';
 import PokemonCardRender from './PokemonCardRender';
-import NewMenu from './NewMenu';
+import Menu from './Menu';
 
 class App extends React.Component{
     state={
@@ -36,12 +36,46 @@ class App extends React.Component{
                 color:'var(--shadow)',
                 fontSize:'1.5rem',
             },
+            rightMenu:{
+                main:{
+                    position:'fixed',
+                    right:'0%',
+                    top:'0%',
+                    width:'fit-content',
+                    border:'solid var(--pokemonCardBorderColor) 3px',
+                    borderBottomLeftRadius:'10px',
+                    paddingLeft:'10px',
+                    paddingBottom:'3px',
+                    backgroundColor:'var(--pokemonCardBorderBackground)',
+                    color:'var(--shadow)',
+                    borderTop:'none',
+                    borderRight:'none',
+                    display:'flex',
+                },
+                header:{
+                    width:'fit-content',
+                    paddingRight:'5px',
+                    fontSize:'0.9rem',
+                },
+                input:{
+                    width:'45px',
+                    border:'none',
+                    backgroundColor:'var(--pokemonCardBorderBackground)',
+                    borderRight:'none',
+                    borderTop:'none',
+                    color:'var(--shadow)',
+                },
+            }
         }
         const onchangeinput=(e)=>{
-            this.setState({searchInputValue:e.target.value})
+            this.setState({searchInputValue:e.target.value});
         }
         const changeSelect=(e)=>{
-            this.setState({pickedTypeToDisplay:e.target.value})
+            this.setState({pickedTypeToDisplay:e.target.value});
+        }
+        const clearFilters=()=>{
+            console.log('clear all filters');
+            this.setState({searchInputValue:'',pickedTypeToDisplay:'all'});
         }
 
         var checkAllFilters=
@@ -55,36 +89,45 @@ class App extends React.Component{
         :true)
 
         return(
-        <React.Fragment>
-            <div id='App' style={styles.App}>
-                <NewMenu
-                    searchInputValue={this.state.searchInputValue}
-                    onchangeinput={onchangeinput}
-                    allTypes={this.state.allTypes}
-                    pickedTypeToDisplay={this.state.pickedTypeToDisplay}
-                    changeSelect={changeSelect}
-                />
-                <div id='PokemonList' style={styles.PokemonList}>
-                    {
-                        this.props.allFetches !== undefined?
-                            checkAllFilters.length>0?
-                                checkAllFilters
-                                    .map((x,i)=>
-                                        <PokemonCardRender
-                                        key={i}
-                                            name={x.name}
-                                            type={x.type}
-                                            ID={x.ID}
-                                            weight={x.weight}
-                                            allFetches={this.props.allFetches}
-                                        />
-                                    ):
-                            <div style={styles.noResults}>No results...</div>:
-                        <div style={styles.noResults}>No results</div>
-                    }
+                <div id='App' style={styles.App}>
+                    <Menu
+                        searchInputValue={this.state.searchInputValue}
+                        onchangeinput={onchangeinput}
+                        allTypes={this.state.allTypes}
+                        pickedTypeToDisplay={this.state.pickedTypeToDisplay}
+                        changeSelect={changeSelect}
+                        clearFilters={clearFilters}
+                    />
+                    <div style={styles.rightMenu.main}>
+                        <div style={styles.rightMenu.header}>Number of displayed pokemons: </div>
+                        <input
+                            type="number"
+                            onChange={this.props.debounce}
+                            style={styles.rightMenu.input}
+                            defaultValue={this.props.displayedPokemonsOnPage}
+                            placeholder='Number of displayed pokemons'
+                        />
+                    </div>
+                    <div id='PokemonList' style={styles.PokemonList}>
+                        {
+                            this.props.allFetches !== undefined?
+                                checkAllFilters.length>0?
+                                    checkAllFilters
+                                        .map((x,i)=>
+                                            <PokemonCardRender
+                                            key={i}
+                                                name={x.name}
+                                                type={x.type}
+                                                ID={x.ID}
+                                                weight={x.weight}
+                                                allFetches={this.props.allFetches}
+                                            />
+                                        ):
+                                <div style={styles.noResults}>No results...</div>:
+                            <div style={styles.noResults}>No results</div>
+                        }
+                    </div>
                 </div>
-            </div>
-            </React.Fragment>
         );
     }
 }

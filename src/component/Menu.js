@@ -1,85 +1,88 @@
 import React from "react";
-import SearchInputComponent from "./SearchInput";
-
-//https://pokeapi.co/api/v2/generation/1/
-//https://pokeapi.co/api/v2/pokemon/1
 
 class Menu extends React.Component{
     state={
-        coloredMode:'list',
         allTypes:[],
+        scrolled:0,
     }
     componentDidMount(){
         fetch('https://pokeapi.co/api/v2/generation/1/')
         .then((respond)=>respond.json())
         .then((respond)=>this.setState({allTypes:respond.types}))
-
-        if(localStorage.getItem('displayMode')){
-
-            this.setState({coloredMode:(localStorage.getItem('displayMode'))})
-
-                if(this.state.coloredMode === 'list'){
-                    document.querySelector('#PokemonList').style="display:var(--displayModeBlock);"
-                }
-                else if(this.state.coloredMode === 'grid'){
-                    document.querySelector('#PokemonList').style="display:var(--displayModeGrid);"
-                }
-                else{
-                    document.querySelector('#PokemonList').style="display:var(--displayModeBlock);"
-                }
-        }
     }
-render(){
-const style={
-    Menu:{
-        position:'fixed',
-        zIndex:'1309',
-        display:'grid',
-        width:'70%',
-        height:'40px',
-        maxHeight:'40px',
-        gridTemplateColumns:'3fr 1.25fr 2fr 2fr',
-        textAlign:'center',
-        verticalAlign:'middle',
-        lineHeight:'40px',
-        boxShadow:'3px 3px rgb(98,98,98)',
-        margin:'5px',
+    render(){
+        const styles={
+            Menu:{
+                position:'fixed',
+                height:'var(--heightOfMenu)',
+                display:'grid',
+                borderRadius:'5px',
+                overflow:'hidden',
+                backgroundColor:'var(--pokemonCardBorderBackground)',
+                width:'fit-content',
+                gridAutoFlow:'column',
+            },
+            SearchInputComponent:{
+                opacity:this.props.scrolled>0?0.4:1,
+                height:'100%',
+                borderBottomLeftRadius:'5px',
+                borderTopLeftRadius:'5px',
+                backgroundColor:'var(--pokemonCardBorderBackground)',
+                color:'black',
+                border:'solid 2px var(--pokemonCardBorderColor)',
+                width:'200px',
+            },
+            inputs:{
+                opacity:this.state.scrolled>0?0.4:1,
+                height:'100%',
+                width:'fit-content',
+                border:'solid 2px var(--pokemonCardBorderColor)',
+                backgroundColor:'var(--pokemonCardBorderBackground)',
+                borderBottomRightRadius:'5px',
+                borderTopRightRadius:'5px',
+                color:'var(--shadow)',
+            },
+            X:{
+                color:'var(--shadow)',
+                opacity:this.state.scrolled>0?0.4:1,
+                height:'100%',
+                paddingLeft:'5px',
+                paddingRight:'5px',
+                fontWeight:'bold',
+                width:'fit-content',
+                border:'solid 2px var(--pokemonCardBorderColor)',
+                backgroundColor:'var(--pokemonCardBorderBackground)',
+            },
+        }
+        return(
+            <div id="Menu" style={styles.Menu}>
+                <input
+                    type="text"
+                    onChange={this.props.onchangeinput}
+                    value={this.props.searchInputValue}
+                    placeholder="Search pokemon by his name..."
+                    id="SearchInputComponent"
+                    style={styles.SearchInputComponent}
+                />
+                {
+                    this.props.searchInputValue!==''||this.props.pickedTypeToDisplay!=='all'?
+                        <input type="button" value="X" style={styles.X} onClick={this.props.clearFilters}/>:
+                            null
+                }
+                <select style={styles.inputs} onChange={this.props.changeSelect} value={this.props.pickedTypeToDisplay}>
+                    <option value="all" key="0">all</option>
+                    {document.addEventListener("scroll",(e)=>{this.setState({scrolled:window.scrollY})})}
+                    {
+                        Array.from(this.state.allTypes).map((y,i)=>
+                            <option value={y.name} key={i}>
+                                {y.name}
+                            </option>
+                        )
+                    }
+                </select>
+            </div>
+        );
     }
 }
-const{searchInputValue,onchangeinput,pickedTypeToDisplay,changeSelect}=this.props;
-    const changeDisplayModeToGrid=(e)=>{
-        document.querySelector('#PokemonList').style="display:var(--displayModeGrid);";
-        uploadToLocal('grid');
-        this.setState({coloredMode:(localStorage.getItem('displayMode'))})
-    }
-    const changeDisplayModeToBlock=(e)=>{
-        document.querySelector('#PokemonList').style="display:var(--displayModeBlock);";
-        uploadToLocal('list');
-        this.setState({coloredMode:(localStorage.getItem('displayMode'))})
-    }
-    const uploadToLocal=(displayMode)=>{
-        localStorage.setItem('displayMode', displayMode)
-    }
-    const changeDisplayMode=()=>{
-        this.setState({coloredMode:(localStorage.getItem('displayMode'))});
-        if(this.state.coloredMode === 'list'){
-            document.querySelector('#PokemonList').style="display:var(--displayModeBlock);";
-        }
-        if(this.state.coloredMode === 'grid'){
-            document.querySelector('#PokemonList').style="display:var(--displayModeGrid);";
-        }
-    }
-window.onload=changeDisplayMode;
-return(
-    <div id="Menu" style={style.Menu}>
-        <SearchInputComponent searchInputValue={searchInputValue} onchangeinput={onchangeinput}/>
-        <select onChange={changeSelect} value={pickedTypeToDisplay}>
-            <option value="all" key="0">all</option>
-            {Array.from(this.state.allTypes).map((y,i)=><option value={y.name} key={i}>{y.name}</option>)}
-        </select>
-        <input type="button" value="Kafelki" onClick={changeDisplayModeToGrid} Style={this.state.coloredMode === 'grid'?'background-color:red':''}/>
-        <input type="button" value="Lista" onClick={changeDisplayModeToBlock} Style={this.state.coloredMode === 'list'?'background-color:red':''}/>
-    </div>
-)}}
 
 export default Menu;
