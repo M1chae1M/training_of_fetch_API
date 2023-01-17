@@ -66,7 +66,7 @@ class Menu extends React.Component{
                 />
                 {
                     this.props.searchInputValue!==''||this.props.pickedTypeToDisplay!=='all'?
-                        <input type="button" value="X" style={styles.X} onClick={this.props.clearFilters}/>:
+                        <input type="button" value="🞮" style={styles.X} onClick={this.props.clearFilters}/>:
                             null
                 }
                 <select style={styles.inputs} onChange={this.props.changeSelect} value={this.props.pickedTypeToDisplay}>
