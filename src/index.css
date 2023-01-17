@@ -21,7 +21,7 @@ animation:scaleUp 0.1s linear forwards;
 .PokemonCard:hover #imgDiv{
 border-style:dotted !important;
 }
-div .PokemonCardRenderUnderline:hover{
+div .DataLine:hover{
 border-bottom:solid var(--pokemonCardBorderColor) 2px !important;
 animation:fontPlus 0.1s linear forwards;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import DataLine from "./PokemonCardRenderComponents/DataLine";
 
 class PokemonCardRender extends React.Component{
     state={
@@ -26,15 +27,11 @@ class PokemonCardRender extends React.Component{
                 margin:'3px',
                 border:'solid var(--pokemonCardBorderColor) 3px',
                 borderRadius:'20px',
-            },
-            bolded:{
-                fontWeight:'bold',
+                display:'grid',
+                alignItems:'center',
             },
             img:{
                 display:this.state.loadingState===true?'none':'',
-            },
-            fitDivWithHoverUnderline:{
-                width:'fit-content',
             },
         }
         return(
@@ -45,7 +42,7 @@ class PokemonCardRender extends React.Component{
                             <div id="imgDiv" style={styles.imgDiv}>
                                 {
                                     this.state.loadingState === true?
-                                        <div style={styles.divs}>loading...</div>:
+                                        <div>loading...</div>:
                                             null
                                 }
                                 <img
@@ -55,11 +52,10 @@ class PokemonCardRender extends React.Component{
                                     alt=""
                                 />
                             </div>
-                            <div style={styles.divs}><a href style={styles.bolded}>ID:</a> loading...</div>
-                            <div style={styles.divs}><a href style={styles.bolded}>Name:</a> loading...</div>
-                            <div style={styles.divs}><a href style={styles.bolded}>Type:</a> loading...</div>
-                            <div style={styles.divs}><a href style={styles.bolded}>Weight:</a> loading...</div>
-                            <div style={styles.divs}><a href style={styles.bolded}>Region:</a> loading...</div>
+                            <DataLine header="ID:" content="loading..."/>
+                            <DataLine header="Name:" content="loading..."/>
+                            <DataLine header="Type:" content="loading..."/>
+                            <DataLine header="Weight:" content="loading..."/>
                         </React.Fragment>:
                             <React.Fragment>
                                 <div id="imgDiv" style={styles.imgDiv}>
@@ -69,14 +65,10 @@ class PokemonCardRender extends React.Component{
                                         alt=""
                                     />
                                 </div>
-                                <div className="PokemonCardRenderUnderline" style={styles.fitDivWithHoverUnderline}><a href style={styles.bolded}>ID:</a> {this.props.ID}</div>
-                                <div className="PokemonCardRenderUnderline" style={styles.fitDivWithHoverUnderline}><a href style={styles.bolded}>Name:</a> {this.props.name}</div>
-                                <div className="PokemonCardRenderUnderline" style={styles.fitDivWithHoverUnderline}><a href style={styles.bolded}>Type:</a> 
-                                    {
-                                        Array.from(this.props.type).map((x,i)=>(i!==0?', ':' ')+ x.type.name)
-                                    }
-                                </div>
-                                <div className="PokemonCardRenderUnderline" style={styles.fitDivWithHoverUnderline}><a href style={styles.bolded}>Weight:</a> {this.props.weight} kg</div>
+                                <DataLine header="ID:" content={this.props.ID}/>
+                                <DataLine header="Name:" content={this.props.name}/>
+                                <DataLine header="Type:" content={Array.from(this.props.type).map((x,i)=>(i!==0?', ':' ')+ x.type.name)}/>
+                                <DataLine header="Weight:" content={this.props.weight+' kg'}/>
                             </React.Fragment>
                 }
             </div>
