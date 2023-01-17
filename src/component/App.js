@@ -4,11 +4,9 @@ import Menu from './Menu';
 
 class App extends React.Component{
     state={
-        searchInputValue:'',
         resultsOf:[],
+        searchInputValue:'',
         pickedTypeToDisplay:'all',
-        loading:true,
-        testowatablica:'',
     }
     render(){
         const styles={
@@ -92,9 +90,9 @@ class App extends React.Component{
                 <div id='App' style={styles.App}>
                     <Menu
                         searchInputValue={this.state.searchInputValue}
-                        onchangeinput={onchangeinput}
                         allTypes={this.state.allTypes}
                         pickedTypeToDisplay={this.state.pickedTypeToDisplay}
+                        onchangeinput={onchangeinput}
                         changeSelect={changeSelect}
                         clearFilters={clearFilters}
                     />
@@ -102,10 +100,10 @@ class App extends React.Component{
                         <div style={styles.rightMenu.header}>Number of displayed pokemons: </div>
                         <input
                             type="number"
-                            onChange={this.props.debounce}
                             style={styles.rightMenu.input}
                             defaultValue={this.props.displayedPokemonsOnPage}
                             placeholder='Number of displayed pokemons'
+                            onChange={this.props.debounce}
                         />
                     </div>
                     <div id='PokemonList' style={styles.PokemonList}>
