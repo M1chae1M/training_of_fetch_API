@@ -12,7 +12,7 @@ class App extends React.Component{
         const styles={
             App:{
                 display:'grid',
-                width:'80%',
+                width:'100%',
                 height:'100%',
                 position:'relative',
                 justifyItems:'center',
