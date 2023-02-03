@@ -1,8 +1,8 @@
 import React from 'react';
-import PokemonCardRender from './PokemonCardRender';
 import Menu from './Menu';
+import PokemonCardRender from './PokemonCardRender';
 
-class App extends React.Component{
+export default class App extends React.Component{
     state={
         resultsOf:[],
         searchInputValue:'',
@@ -129,5 +129,3 @@ class App extends React.Component{
         );
     }
 }
-
-export default App;

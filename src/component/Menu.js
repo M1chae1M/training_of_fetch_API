@@ -1,6 +1,6 @@
 import React from "react";
 
-class Menu extends React.Component{
+export default class Menu extends React.Component{
     state={
         allTypes:[],
         scrolled:0,
@@ -84,5 +84,3 @@ class Menu extends React.Component{
         );
     }
 }
-
-export default Menu;

@@ -1,6 +1,6 @@
 import React from "react";
 
-class DataLine extends React.Component{
+export default class DataLine extends React.Component{
     render(){
         const styles={
             DataLine:{
@@ -17,5 +17,3 @@ class DataLine extends React.Component{
         );
     }
 }
-
-export default DataLine;

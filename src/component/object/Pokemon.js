@@ -1,4 +1,4 @@
-class Pokemon{
+export default class Pokemon{
     constructor(ID, name, type, weight){
        this.ID=ID
        this.name=name
@@ -6,4 +6,3 @@ class Pokemon{
        this.weight=weight
    }
 }
-export default Pokemon;

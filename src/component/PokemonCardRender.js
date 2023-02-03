@@ -1,7 +1,7 @@
 import React from "react";
 import DataLine from "./PokemonCardRenderComponents/DataLine";
 
-class PokemonCardRender extends React.Component{
+export default class PokemonCardRender extends React.Component{
     state={
         loadingState:true,
     }
@@ -75,5 +75,3 @@ class PokemonCardRender extends React.Component{
         );
     }
 }
-
-export default PokemonCardRender;

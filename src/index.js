@@ -1,26 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './component/App';
-import Pokemon from './component/object/Pokemon';
+import fetchFunction from './component/fetchFunction';
 import './index.css';
 
-const fetchFunction=(numberOfPage,targ, changeState)=>{
-    const allFetchesInTable=[];
-    if(targ>0){
-        for(let i=numberOfPage*targ+1;i<=targ;i++){
-            let url='https://pokeapi.co/api/v2/pokemon/'+i;
-            fetch(url)
-            .then((res)=>res.json())
-            .then((res)=>allFetchesInTable.push(new Pokemon(res.id,res.name,res.types,res.weight)))
-            .then((res)=>changeState(allFetchesInTable))
-        }
-    }
-    else{
-        changeState([]);
-    }
-}
-
-class RenderAndApiURL extends React.Component{
+export default class RenderAndApiURL extends React.Component{
     state={
         allFetchesInTableState:[],
         numberOfPage:0,
@@ -34,7 +18,6 @@ class RenderAndApiURL extends React.Component{
         const changeFetchesState=(tab)=>{
             this.setState({allFetchesInTableState:tab});
         }
-
         let timeoutID;
         const debounce=(e)=>{
             if(timeoutID){clearTimeout(timeoutID)}
@@ -55,4 +38,3 @@ class RenderAndApiURL extends React.Component{
 
 const root=ReactDOM.createRoot(document.getElementById('root'));
 root.render(<RenderAndApiURL/>);
-export default RenderAndApiURL;
