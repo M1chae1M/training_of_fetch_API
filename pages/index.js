@@ -1,8 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './component/App';
-import fetchFunction from './component/fetchFunction';
+// import fetchFunction from './component/fetchFunction';
 import Head from 'next/head';
+
+
+
+class Pokemon{
+    constructor(ID, name, type, weight){
+       this.ID=ID
+       this.name=name
+       this.type=type
+       this.weight=weight
+   }
+}
+const fetchFunction = (numberOfPage, targ, changeState) => {
+    if (targ > 0) {
+      let allFetchesInTable = [];
+      for (let i = numberOfPage * targ + 1; i < numberOfPage * targ + targ + 1; i++) {
+        let url = "https://pokeapi.co/api/v2/pokemon/" + i;
+        fetch(url)
+          .then((res) => res.json())
+          .then((res) => {
+            allFetchesInTable.push(new Pokemon(res.id, res.name, res.types, res.weight));
+            return allFetchesInTable;
+          })
+          .then((allFetchesInTable) => changeState(allFetchesInTable));
+      }
+    } else {
+      changeState([]);
+    }
+};
+
 
 export default class RenderAndApiURL extends React.Component{
     state={
@@ -42,6 +71,3 @@ export default class RenderAndApiURL extends React.Component{
         );
     }
 }
-
-// const root=ReactDOM.createRoot(document.getElementById('root'));
-// root.render(<RenderAndApiURL/>);

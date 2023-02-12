@@ -5,7 +5,9 @@ import DataLine from "../component/PokemonCardRenderComponents/DataLine";
 import PokemonCardRender from "../component/PokemonCardRender";
 
 export async function getStaticPaths(){
-    const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1008')
+    // const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1008')
+    // const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100')
+    const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10')
     const {results}= data;
     const name= results.map(({name})=>({name}));
     const paths = name.map(({name}) => ({params: {id: name}}));

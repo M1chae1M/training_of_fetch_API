@@ -1,0 +1,13 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html",
+  "/api/hello": "pages/api/hello.js",
+  "/component/App": "pages/component/App.html",
+  "/component/Menu": "pages/component/Menu.html",
+  "/component/PokemonCardRender": "pages/component/PokemonCardRender.html",
+  "/component/PokemonCardRenderComponents/DataLine": "pages/component/PokemonCardRenderComponents/DataLine.html",
+  "/": "pages/index.html",
+  "/pokemons/[id]": "pages/pokemons/[id].js"
+}
