@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './component/App';
 import fetchFunction from './component/fetchFunction';
-import './index.css';
 
 export default class RenderAndApiURL extends React.Component{
     state={
         allFetchesInTableState:[],
         numberOfPage:0,
-        displayedPokemonsOnPage:100,
+        // displayedPokemonsOnPage:100,
+        displayedPokemonsOnPage:20,
         testState:false,
     }
     componentDidMount(e){
@@ -36,5 +36,5 @@ export default class RenderAndApiURL extends React.Component{
     }
 }
 
-const root=ReactDOM.createRoot(document.getElementById('root'));
-root.render(<RenderAndApiURL/>);
+// const root=ReactDOM.createRoot(document.getElementById('root'));
+// root.render(<RenderAndApiURL/>);

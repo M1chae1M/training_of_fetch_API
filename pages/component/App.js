@@ -113,7 +113,7 @@ export default class App extends React.Component{
                                     checkAllFilters
                                         .map((x,i)=>
                                             <PokemonCardRender
-                                            key={i}
+                                                key={i}
                                                 name={x.name}
                                                 type={x.type}
                                                 ID={x.ID}

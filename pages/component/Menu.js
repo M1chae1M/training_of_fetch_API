@@ -3,7 +3,7 @@ import React from "react";
 export default class Menu extends React.Component{
     state={
         allTypes:[],
-        scrolled:0,
+        // scrolled:0,
     }
     componentDidMount(){
         fetch('https://pokeapi.co/api/v2/generation/1/')
@@ -23,7 +23,7 @@ export default class Menu extends React.Component{
                 gridAutoFlow:'column',
             },
             SearchInputComponent:{
-                opacity:this.props.scrolled>0?0.4:1,
+                // opacity:this.props.scrolled>0?0.4:1,
                 height:'100%',
                 borderBottomLeftRadius:'5px',
                 borderTopLeftRadius:'5px',
@@ -33,7 +33,7 @@ export default class Menu extends React.Component{
                 width:'200px',
             },
             inputs:{
-                opacity:this.state.scrolled>0?0.4:1,
+                // opacity:this.state.scrolled>0?0.4:1,
                 height:'100%',
                 width:'fit-content',
                 border:'solid 2px var(--pokemonCardBorderColor)',
@@ -44,7 +44,7 @@ export default class Menu extends React.Component{
             },
             X:{
                 color:'var(--shadow)',
-                opacity:this.state.scrolled>0?0.4:1,
+                // opacity:this.state.scrolled>0?0.4:1,
                 height:'100%',
                 paddingLeft:'5px',
                 paddingRight:'5px',
@@ -55,7 +55,12 @@ export default class Menu extends React.Component{
             },
         }
         return(
-            <div id="Menu" style={styles.Menu}>
+            <div id="Menu" style={styles.Menu}
+            // onScroll={(e)=>{
+            //     this.setState({scrolled:window.scrollY})
+            // }}
+            >
+                {/* {document.addEventListener("scroll",(e)=>{this.setState({scrolled:window.scrollY})})} */}
                 <input
                     type="text"
                     onChange={this.props.onchangeinput}
@@ -71,7 +76,7 @@ export default class Menu extends React.Component{
                 }
                 <select style={styles.inputs} onChange={this.props.changeSelect} value={this.props.pickedTypeToDisplay}>
                     <option value="all" key="0">all</option>
-                    {document.addEventListener("scroll",(e)=>{this.setState({scrolled:window.scrollY})})}
+                    {/* {document.addEventListener("scroll",(e)=>{this.setState({scrolled:window.scrollY})})} */}
                     {
                         Array.from(this.state.allTypes).map((y,i)=>
                             <option value={y.name} key={i}>
