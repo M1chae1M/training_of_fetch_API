@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './component/App';
 import fetchFunction from './component/fetchFunction';
+import Head from 'next/head';
 
 export default class RenderAndApiURL extends React.Component{
     state={
@@ -27,11 +28,17 @@ export default class RenderAndApiURL extends React.Component{
             },1000);
         }
         return(
-            <App
-                displayedPokemonsOnPage={this.state.displayedPokemonsOnPage}
-                allFetches={this.state.allFetchesInTableState}
-                debounce={debounce}
-            />
+            <React.Fragment>
+                <Head>
+                    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+                    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+                </Head>
+                <App
+                    displayedPokemonsOnPage={this.state.displayedPokemonsOnPage}
+                    allFetches={this.state.allFetchesInTableState}
+                    debounce={debounce}
+                />
+            </React.Fragment>
         );
     }
 }
