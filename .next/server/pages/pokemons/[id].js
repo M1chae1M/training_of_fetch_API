@@ -41,9 +41,9 @@ var PokemonCardRender = __webpack_require__(7796);
 
 
 async function getStaticPaths() {
-    // const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1008')
+    const { data  } = await external_axios_default().get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1008");
     // const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100')
-    const { data  } = await external_axios_default().get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10");
+    // const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10')
     const { results  } = data;
     const name = results.map(({ name  })=>({
             name
