@@ -77,6 +77,7 @@ export default class App extends React.Component{
         }
 
         var checkAllFilters=
+        this.props.allFetches?
         this.props.allFetches.filter(pokemonName=>(this.state.searchInputValue!=='')?
             pokemonName.name.slice(0,this.state.searchInputValue.length).toUpperCase()===this.state.searchInputValue.toUpperCase():
                 true)
@@ -84,7 +85,8 @@ export default class App extends React.Component{
             (Array.from(y.type).length>1?
                 (y.type[0].type.name===this.state.pickedTypeToDisplay || y.type[1].type.name===this.state.pickedTypeToDisplay):
                     y.type[0].type.name===this.state.pickedTypeToDisplay)
-        :true)
+        :true):
+        []
 
         return(
                 <div id='App' style={styles.App}>
