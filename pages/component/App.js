@@ -85,8 +85,8 @@ export default class App extends React.Component{
             (Array.from(y.type).length>1?
                 (y.type[0].type.name===this.state.pickedTypeToDisplay || y.type[1].type.name===this.state.pickedTypeToDisplay):
                     y.type[0].type.name===this.state.pickedTypeToDisplay)
-        :true):
-        []
+        :true)
+        :null
 
         return(
                 <div id='App' style={styles.App}>
