@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './component/App';
-import Head from 'next/head';
+// import Head from 'next/head';
 
 class Pokemon{
     constructor(ID, name, type, weight){
@@ -53,17 +53,11 @@ export default class RenderAndApiURL extends React.Component{
             },1000);
         }
         return(
-            <React.Fragment>
-                <Head>
-                    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-                    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-                </Head>
-                <App
-                    displayedPokemonsOnPage={this.state.displayedPokemonsOnPage}
-                    allFetches={this.state.allFetchesInTableState}
-                    debounce={debounce}
-                />
-            </React.Fragment>
+            <App
+                displayedPokemonsOnPage={this.state.displayedPokemonsOnPage}
+                allFetches={this.state.allFetchesInTableState}
+                debounce={debounce}
+            />
         );
     }
 }
