@@ -12,6 +12,8 @@ export default class PokemonCardRender extends React.Component{
                 border:'solid 1px var(--pokemonCardBorderColor)',
                 fontSize:'0.9rem',
                 width:this.props.cardWidth?this.props.cardWidth:'auto',
+                minWidth:this.props.cardWidth?'240px':'none',
+                justifyContent:'center',
                 height:this.props.cardHeight?this.props.cardHeight:'200px',
                 padding:'7px',
                 borderRadius:'5px',
@@ -47,7 +49,8 @@ export default class PokemonCardRender extends React.Component{
             Data:{
                 display:'grid',
                 justifyItems:this.props.fullScreen===false?'center':null,
-                width:this.props.fullScreen===true?'50%':null,
+                width:this.props.fullScreen===true?'70%':null,
+                minWidth:this.props.fullScreen===true?'230px':null,
                 padding:this.props.fullScreen===true?'15px':null,
                 border:this.props.fullScreen===true?'solid var(--pokemonCardBorderColor) 3px':null,
                 borderRadius:this.props.fullScreen===true?'20px':null,

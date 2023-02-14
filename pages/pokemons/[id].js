@@ -6,21 +6,19 @@ import PokemonCardRender from "../component/PokemonCardRender";
 
 export async function getStaticPaths(){
     const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1008')
-    // const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100')
-    // const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10')
     const {results}= data;
     const name= results.map(({name})=>({name}));
     const paths = name.map(({name}) => ({params: {id: name}}));
-    return {
+    return{
         paths,
         fallback: false,
     }
 }
   
 export async function getStaticProps({params}){
-return {
-    props:{params},
-}
+    return{
+        props:{params},
+    }
 }
 
 export default class Pokemon extends React.Component{
@@ -88,7 +86,7 @@ export default class Pokemon extends React.Component{
                         ID={this.state.newObject.id}
                         weight={this.state.newObject.weight}
                         cardHeight="80vh"
-                        cardWidth="500px"
+                        cardWidth="50vw"
                         abilities={this.state.newObject.abilities}
                         height={this.state.newObject.height}
                         stats={this.state.newObject.stats}
