@@ -1,4 +1,11 @@
 /* *{box-sizing:border-box;padding:0;margin:0;}
+html,body,#root{width:100vw;height:100vh;position:relative;
+display:grid;
+
+
+font-size:0.87rem;
+} */
+*{box-sizing:border-box;padding:0;margin:0;}
 html,body,#root{width:100vw;height:100vh;position:relative;display:grid;justify-items:center;background-color:#d1d1d1;overflow-x:hidden;}
 :root{
 --pokemonCardBorderColor:rgb(78, 78, 78);
@@ -48,4 +55,13 @@ to{transform:scale(120%);}
 @keyframes fromzero{
 from{transform:translateX(100%) scaleX(0%);}
 to{transform:translateX(0%);}
-} */
+}
+@media only screen and (max-width: 605px){
+#PokemonList{grid-template-columns:repeat(3, 1fr) !important;}
+}
+@media only screen and (max-width: 457px){
+#PokemonList{grid-template-columns:repeat(2, 1fr) !important;}
+}
+@media only screen and (max-width: 305px){
+#PokemonList{grid-template-columns:1fr !important;}
+}

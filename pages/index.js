@@ -14,7 +14,7 @@ class Pokemon{
 const fetchFunction=(numberOfPage, targ, changeState)=>{
     if(targ>0){
       let allFetchesInTable=[];
-      for(let i=numberOfPage*targ+1;i< numberOfPage*targ+targ+1;i++){
+      for(let i=numberOfPage*targ+1;i<numberOfPage*targ+targ+1;i++){
         let url="https://pokeapi.co/api/v2/pokemon/"+i;
         fetch(url)
           .then((res)=>res.json())
@@ -52,11 +52,16 @@ export default class RenderAndApiURL extends React.Component{
             },1000);
         }
         return(
-            <App
+            <React.Fragment>
+                {/* {console.log(this.props.pageProps)} */}
+                {/* {console.log(this.props.data)} */}
+                <App
                 displayedPokemonsOnPage={this.state.displayedPokemonsOnPage}
                 allFetches={this.state.allFetchesInTableState}
                 debounce={debounce}
             />
+            </React.Fragment>
+      
         );
     }
 }
