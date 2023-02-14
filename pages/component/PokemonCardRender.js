@@ -55,6 +55,7 @@ export default class PokemonCardRender extends React.Component{
                 border:this.props.fullScreen===true?'solid var(--pokemonCardBorderColor) 3px':null,
                 borderRadius:this.props.fullScreen===true?'20px':null,
                 height:this.props.cardHeight?`calc(${this.props.cardHeight}*70/100)`:'auto',
+                overflowY:'overlay',
             },
             ul:{
                 listStyle:'none',
