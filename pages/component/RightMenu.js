@@ -40,13 +40,12 @@ export default class RightMenu extends React.Component{
         }
         return(
             <div style={styles.rightMenu.main} id="RightMenu"
-            // onMouseEnter={()=>{this.setState({showInput:true})}}
-            // onMouseLeave={()=>{this.setState({showInput:false})}}
+            onMouseEnter={()=>{this.setState({showInput:true})}}
+            onMouseLeave={()=>{this.setState({showInput:false})}}
             >
                 {
-                    // this.state.showInput===true?
-                    this.state.showInput===false?
-                    <div style={styles.rightMenu.header} id="rightMenuHeader">Number of displayed pokemons: </div>
+                    this.state.showInput===true?
+                        <div style={styles.rightMenu.header} id="rightMenuHeader">Number of displayed pokemons: </div>
                             :null
                 }
                 <input

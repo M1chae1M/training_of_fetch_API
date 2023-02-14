@@ -81,12 +81,20 @@ export default class Pokemon extends React.Component{
         return(
             <React.Fragment>
                 <div id="App" style={styles.App}>
-                    {/* {console.log(this.state.newObject)} */}
+                    {console.log(this.state.newObject)}
                     <PokemonCardRender
                         name={this.state.newObject.name}
                         type={this.state.newObject.types}
                         ID={this.state.newObject.id}
                         weight={this.state.newObject.weight}
+                        cardHeight="400px"
+
+                        abilities={this.state.newObject.abilities}
+
+
+                        height={this.state.newObject.height}
+                        stats={this.state.newObject.stats}
+                        base_experience={this.state.newObject.base_experience}
                     />
                     <Link href={'/'}><div style={styles.backButton}>↩️</div></Link>
                 </div>
@@ -94,72 +102,3 @@ export default class Pokemon extends React.Component{
         );
     }
 }
-
-// {
-//     <div className="PokemonCard" style={styles.PokemonCardRender}>
-//         {
-//             this.state.loadingState===true?
-//                 <React.Fragment>
-//                     <div id="imgDiv" style={styles.imgDiv}>
-//                         {
-//                             this.state.loadingState === true?
-//                                 <div>loading...</div>:
-//                                     null
-//                         }
-//                         <img
-//                             src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.props.ID+".png"}
-//                             onLoad={()=>{this.setState({loadingState:false})}}
-//                             style={styles.img}
-//                             alt=""
-//                         />
-//                     </div>
-//                     <DataLine header="ID:" content="loading..."/>
-//                     <DataLine header="Name:" content="loading..."/>
-//                     <DataLine header="Type:" content="loading..."/>
-//                     <DataLine header="Weight:" content="loading..."/>
-//                 </React.Fragment>:
-//                     <React.Fragment>
-//                         <Link href={`./pokemons/${this.props.name}`}>
-//                             <div id="imgDiv" style={styles.imgDiv}>
-//                             {/* this.state.newObject */}
-//                                 <img
-//                                     // src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.props.ID+".png"}
-//                                     src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.state.newObject.id+".png"}
-//                                     style={styles.img}
-//                                     alt=""
-//                                 />
-//                             </div>
-//                         </Link>
-//                         {/*  */}
-//                         {/* <DataLine header="ID:" content={this.props.ID}/> */}
-//                         <DataLine header="ID:" content={this.state.newObject.id}/>
-//                         {/* <DataLine header="Name:" content={this.props.name}/> */}
-//                         <DataLine header="Name:" content={this.state.newObject.name}/>
-//                         {/* <DataLine header="Type:" content={Array.from(this.props.type).map((x,i)=>(i!==0?', ':' ')+ x.type.name)}/> */}
-
-
-//                         {
-//                                 //   let alltypes=this.state.newObject.types
-//                                 //   alltypes?
-//                                 //       alltypes.map(x=>console.log(x)):
-//                                 //           null
-//                             // console.log((this.state.newObject.types))
-//                             // (this.state.newObject.types).map(x=>console.log(x))
-//                         }
-//                         <DataLine header="Type:"
-//                             content={
-//                                 this.state.newObject.types?
-//                                 (this.state.newObject.types).map((x,i)=>(i!==0?', ':' ')+ x.type.name):
-//                                 null
-//                             }
-//                             />
-
-
-
-
-//                         {/* <DataLine header="Weight:" content={this.props.weight+' kg'}/> */}
-//                         <DataLine header="Weight:" content={this.state.newObject.weight+' kg'}/>
-//                     </React.Fragment>
-//         }
-//     </div>
-// }

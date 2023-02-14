@@ -12,7 +12,8 @@ export default class PokemonCardRender extends React.Component{
                 border:'solid 1px var(--pokemonCardBorderColor)',
                 fontSize:'0.9rem',
                 width:'auto',
-                height:'200px',
+                // height:'200px',
+                height:this.props.cardHeight?this.props.cardHeight:'200px',
                 textAlign:'center',
                 padding:'7px',
                 borderRadius:'5px',
@@ -58,6 +59,26 @@ export default class PokemonCardRender extends React.Component{
                                     <DataLine header="Name:" content="loading..."/>
                                     <DataLine header="Type:" content="loading..."/>
                                     <DataLine header="Weight:" content="loading..."/>
+                                    {
+                                        this.props.height?
+                                            <DataLine header="Height:" content={"loading..."}/>
+                                                :null
+                                    }
+                                    {
+                                        this.props.base_experience?
+                                            <DataLine header="Base experience:" content={"loading..."}/>
+                                                :null
+                                    }
+                                    {
+                                        this.props.abilities!==undefined?
+                                            <DataLine header="Abilities:" content="loading..."/>:
+                                                null
+                                    }
+                                    {
+                                        this.props.stats!==undefined?
+                                            <DataLine header="Stats:" content={"loading..."}/>:
+                                                null
+                                    }
                                 </React.Fragment>:
                                     <React.Fragment>
                                         <Link href={`/pokemons/${this.props.name}`}>
@@ -79,6 +100,30 @@ export default class PokemonCardRender extends React.Component{
                                             }
                                         />
                                         <DataLine header="Weight:" content={this.props.weight+' kg'}/>
+                                        {
+                                            this.props.height?
+                                                <DataLine header="Height:" content={this.props.height+' m'}/>
+                                                    :null
+                                        }
+                                        {
+                                            this.props.base_experience?
+                                                <DataLine header="Base experience:" content={this.props.base_experience}/>
+                                                    :null
+                                        }
+                                        {
+                                            this.props.abilities!==undefined?
+                                                <DataLine header="Abilities:" content={
+                                                    this.props.abilities.map((x,i)=>(i!==0?', ':' ')+ x.ability.name)
+                                                }/>:
+                                                    null
+                                        }
+                                        {
+                                            this.props.stats!==undefined?
+                                                <DataLine header="Stats:" content={
+                                                    this.props.stats.map((x,i)=>(i!==0?', ':' ')+ x.stat.name+': '+x.base_stat)
+                                                }/>:
+                                                    null
+                                        }
                                     </React.Fragment>
                         }
                     </div>
