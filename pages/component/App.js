@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from './Menu';
 import PokemonCardRender from './PokemonCardRender';
+import RightMenu from './RightMenu';
 
 export default class App extends React.Component{
     state={
@@ -34,36 +35,6 @@ export default class App extends React.Component{
                 color:'var(--shadow)',
                 fontSize:'1.5rem',
             },
-            rightMenu:{
-                main:{
-                    position:'fixed',
-                    right:'0%',
-                    top:'0%',
-                    width:'fit-content',
-                    border:'solid var(--pokemonCardBorderColor) 3px',
-                    borderBottomLeftRadius:'10px',
-                    paddingLeft:'10px',
-                    paddingBottom:'3px',
-                    backgroundColor:'var(--pokemonCardBorderBackground)',
-                    color:'var(--shadow)',
-                    borderTop:'none',
-                    borderRight:'none',
-                    display:'flex',
-                },
-                header:{
-                    width:'fit-content',
-                    paddingRight:'5px',
-                    fontSize:'0.9rem',
-                },
-                input:{
-                    width:'45px',
-                    border:'none',
-                    backgroundColor:'var(--pokemonCardBorderBackground)',
-                    borderRight:'none',
-                    borderTop:'none',
-                    color:'var(--shadow)',
-                },
-            }
         }
         const onchangeinput=(e)=>{
             this.setState({searchInputValue:e.target.value});
@@ -89,45 +60,39 @@ export default class App extends React.Component{
         :null
 
         return(
-                <div id='App' style={styles.App}>
-                    <Menu
-                        searchInputValue={this.state.searchInputValue}
-                        allTypes={this.state.allTypes}
-                        pickedTypeToDisplay={this.state.pickedTypeToDisplay}
-                        onchangeinput={onchangeinput}
-                        changeSelect={changeSelect}
-                        clearFilters={clearFilters}
-                    />
-                    <div style={styles.rightMenu.main}>
-                        <div style={styles.rightMenu.header}>Number of displayed pokemons: </div>
-                        <input
-                            type="number"
-                            style={styles.rightMenu.input}
-                            defaultValue={this.props.displayedPokemonsOnPage}
-                            placeholder='Number of displayed pokemons'
-                            onChange={this.props.debounce}
-                        />
-                    </div>
-                    <div id='PokemonList' style={styles.PokemonList}>
-                        {
-                            this.props.allFetches !== undefined?
-                                checkAllFilters.length>0?
-                                    checkAllFilters
-                                        .map((x,i)=>
-                                            <PokemonCardRender
-                                                key={i}
-                                                name={x.name}
-                                                type={x.type}
-                                                ID={x.ID}
-                                                weight={x.weight}
-                                                allFetches={this.props.allFetches}
-                                            />
-                                        ):
-                                <div style={styles.noResults}>No results...</div>:
-                            <div style={styles.noResults}>No results</div>
-                        }
-                    </div>
+            <div id='App' style={styles.App}>
+                <Menu
+                    searchInputValue={this.state.searchInputValue}
+                    allTypes={this.state.allTypes}
+                    pickedTypeToDisplay={this.state.pickedTypeToDisplay}
+                    onchangeinput={onchangeinput}
+                    changeSelect={changeSelect}
+                    clearFilters={clearFilters}
+                />
+                <RightMenu
+                    displayedPokemonsOnPage={this.props.displayedPokemonsOnPage}
+                    debounce={this.props.debounce}
+                />
+                <div id='PokemonList' style={styles.PokemonList}>
+                    {
+                        this.props.allFetches !== undefined?
+                            checkAllFilters.length>0?
+                                checkAllFilters
+                                    .map((x,i)=>
+                                        <PokemonCardRender
+                                            key={i}
+                                            name={x.name}
+                                            type={x.type}
+                                            ID={x.ID}
+                                            weight={x.weight}
+                                            allFetches={this.props.allFetches}
+                                        />
+                                    ):
+                            <div style={styles.noResults}>No results...</div>:
+                        <div style={styles.noResults}>No results</div>
+                    }
                 </div>
+            </div>
         );
     }
 }

@@ -4,8 +4,6 @@ import App from './component/App';
 // import fetchFunction from './component/fetchFunction';
 import Head from 'next/head';
 
-
-
 class Pokemon{
     constructor(ID, name, type, weight){
        this.ID=ID
@@ -14,6 +12,7 @@ class Pokemon{
        this.weight=weight
    }
 }
+
 const fetchFunction = (numberOfPage, targ, changeState) => {
     if (targ > 0) {
       let allFetchesInTable = [];
@@ -32,13 +31,13 @@ const fetchFunction = (numberOfPage, targ, changeState) => {
     }
 };
 
-
 export default class RenderAndApiURL extends React.Component{
     state={
         allFetchesInTableState:[],
         numberOfPage:0,
-        // displayedPokemonsOnPage:100,
-        displayedPokemonsOnPage:20,
+        displayedPokemonsOnPage:100,
+        // displayedPokemonsOnPage:20,
+        // displayedPokemonsOnPage:5,
         testState:false,
     }
     componentDidMount(e){

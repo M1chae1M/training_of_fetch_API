@@ -56,3 +56,27 @@ to{transform:scale(120%);}
 from{transform:translateX(100%) scaleX(0%);}
 to{transform:translateX(0%);}
 }
+@media only screen and (max-width: 605px){
+    #PokemonList{
+        grid-template-columns:repeat(3, 1fr) !important;
+    }
+}
+@media only screen and (max-width: 457px){
+    #PokemonList{
+        grid-template-columns:repeat(2, 1fr) !important;
+    }
+}
+@media only screen and (max-width: 305px){
+    #PokemonList{
+        grid-template-columns:1fr !important;
+    }
+}
+
+
+/* #rightMenuHeader{
+    transform:translateX(100%) scale(0);
+} */
+
+#RightMenu{
+    transition:all 0.4s linear;
+}
