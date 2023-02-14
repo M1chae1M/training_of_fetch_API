@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './component/App';
-// import Head from 'next/head';
 
 class Pokemon{
     constructor(ID, name, type, weight){
