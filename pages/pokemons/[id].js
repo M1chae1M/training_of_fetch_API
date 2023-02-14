@@ -81,17 +81,15 @@ export default class Pokemon extends React.Component{
         return(
             <React.Fragment>
                 <div id="App" style={styles.App}>
-                    {console.log(this.state.newObject)}
                     <PokemonCardRender
+                        fullScreen={true}
                         name={this.state.newObject.name}
                         type={this.state.newObject.types}
                         ID={this.state.newObject.id}
                         weight={this.state.newObject.weight}
-                        cardHeight="400px"
-
+                        cardHeight="80vh"
+                        cardWidth="500px"
                         abilities={this.state.newObject.abilities}
-
-
                         height={this.state.newObject.height}
                         stats={this.state.newObject.stats}
                         base_experience={this.state.newObject.base_experience}

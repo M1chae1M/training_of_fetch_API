@@ -11,10 +11,8 @@ export default class PokemonCardRender extends React.Component{
             PokemonCardRender:{
                 border:'solid 1px var(--pokemonCardBorderColor)',
                 fontSize:'0.9rem',
-                width:'auto',
-                // height:'200px',
+                width:this.props.cardWidth?this.props.cardWidth:'auto',
                 height:this.props.cardHeight?this.props.cardHeight:'200px',
-                textAlign:'center',
                 padding:'7px',
                 borderRadius:'5px',
                 display:'grid',
@@ -25,15 +23,41 @@ export default class PokemonCardRender extends React.Component{
                 background:'linear-gradient(348deg,var(--pokemonCardBorderColor) 0%,var(--pokemonCardBorderBackground) 20%)',
             },
             imgDiv:{
-                height:'100px',
                 margin:'3px',
                 border:'solid var(--pokemonCardBorderColor) 3px',
                 borderRadius:'20px',
                 display:'grid',
                 alignItems:'center',
+                width:'100px',
+                height:'100px',
             },
             img:{
                 display:this.state.loadingState===true?'none':'',
+                width:'100px',
+                height:'100px',
+            },
+            bolded:{
+                fontWeight:'bold',
+            },
+            Stats:{
+                display:'grid',
+                justifyItems:'start',
+                width:'100%',
+            },
+            Data:{
+                display:'grid',
+                justifyItems:this.props.fullScreen===false?'center':null,
+                width:this.props.fullScreen===true?'50%':null,
+                padding:this.props.fullScreen===true?'15px':null,
+                border:this.props.fullScreen===true?'solid var(--pokemonCardBorderColor) 3px':null,
+                borderRadius:this.props.fullScreen===true?'20px':null,
+                height:this.props.cardHeight?`calc(${this.props.cardHeight}*70/100)`:'auto',
+            },
+            ul:{
+                listStyle:'none',
+            },
+            li:{
+                marginLeft:'10px',
             },
         }
         return(
@@ -41,7 +65,7 @@ export default class PokemonCardRender extends React.Component{
                     <div className="PokemonCard" style={styles.PokemonCardRender}>
                         {
                             this.state.loadingState===true?
-                                <React.Fragment>
+                            <React.Fragment>
                                     <div id="imgDiv" style={styles.imgDiv}>
                                         {
                                             this.state.loadingState === true?
@@ -55,30 +79,32 @@ export default class PokemonCardRender extends React.Component{
                                             alt=""
                                         />
                                     </div>
-                                    <DataLine header="ID:" content="loading..."/>
-                                    <DataLine header="Name:" content="loading..."/>
-                                    <DataLine header="Type:" content="loading..."/>
-                                    <DataLine header="Weight:" content="loading..."/>
-                                    {
-                                        this.props.height?
-                                            <DataLine header="Height:" content={"loading..."}/>
-                                                :null
-                                    }
-                                    {
-                                        this.props.base_experience?
-                                            <DataLine header="Base experience:" content={"loading..."}/>
-                                                :null
-                                    }
-                                    {
-                                        this.props.abilities!==undefined?
-                                            <DataLine header="Abilities:" content="loading..."/>:
-                                                null
-                                    }
-                                    {
-                                        this.props.stats!==undefined?
-                                            <DataLine header="Stats:" content={"loading..."}/>:
-                                                null
-                                    }
+                                    <div id="Data" style={styles.Data}>
+                                        <DataLine header="ID:" content="loading..."/>
+                                        <DataLine header="Name:" content="loading..."/>
+                                        <DataLine header="Type:" content="loading..."/>
+                                        <DataLine header="Weight:" content="loading..."/>
+                                        {
+                                            this.props.height?
+                                                <DataLine header="Height:" content={"loading..."}/>
+                                                    :null
+                                        }
+                                        {
+                                            this.props.base_experience?
+                                                <DataLine header="Base experience:" content={"loading..."}/>
+                                                    :null
+                                        }
+                                        {
+                                            this.props.abilities!==undefined?
+                                                <DataLine header="Abilities:" content="loading..."/>:
+                                                    null
+                                        }
+                                        {
+                                            this.props.stats!==undefined?
+                                                <DataLine header="Stats:" content={"loading..."}/>:
+                                                    null
+                                        }
+                                    </div>
                                 </React.Fragment>:
                                     <React.Fragment>
                                         <Link href={`/pokemons/${this.props.name}`}>
@@ -90,40 +116,52 @@ export default class PokemonCardRender extends React.Component{
                                                 />
                                             </div>
                                         </Link>
-                                        <DataLine header="ID:" content={this.props.ID}/>
-                                        <DataLine header="Name:" content={this.props.name}/>
-                                        <DataLine header="Type:"
-                                            content={
-                                                this.props.type?
-                                                Array.from(this.props.type).map((x,i)=>(i!==0?', ':' ')+ x.type.name):
-                                                null
+                                        <div id="Data" style={styles.Data}>
+                                            <DataLine header="ID:" content={this.props.ID}/>
+                                            <DataLine header="Name:" content={this.props.name}/>
+                                            <DataLine header="Type:"
+                                                content={
+                                                    this.props.type?
+                                                    Array.from(this.props.type).map((x,i)=>(i!==0?', ':' ')+ x.type.name):
+                                                    null
+                                                }
+                                            />
+                                            <DataLine header="Weight:" content={this.props.weight+' kg'}/>
+                                            {
+                                                this.props.height?
+                                                    <DataLine header="Height:" content={this.props.height+' m'}/>
+                                                        :null
                                             }
-                                        />
-                                        <DataLine header="Weight:" content={this.props.weight+' kg'}/>
-                                        {
-                                            this.props.height?
-                                                <DataLine header="Height:" content={this.props.height+' m'}/>
-                                                    :null
-                                        }
-                                        {
-                                            this.props.base_experience?
-                                                <DataLine header="Base experience:" content={this.props.base_experience}/>
-                                                    :null
-                                        }
-                                        {
-                                            this.props.abilities!==undefined?
-                                                <DataLine header="Abilities:" content={
-                                                    this.props.abilities.map((x,i)=>(i!==0?', ':' ')+ x.ability.name)
-                                                }/>:
-                                                    null
-                                        }
-                                        {
-                                            this.props.stats!==undefined?
-                                                <DataLine header="Stats:" content={
-                                                    this.props.stats.map((x,i)=>(i!==0?', ':' ')+ x.stat.name+': '+x.base_stat)
-                                                }/>:
-                                                    null
-                                        }
+                                            {
+                                                this.props.base_experience?
+                                                    <DataLine header="Base experience:" content={this.props.base_experience}/>
+                                                        :null
+                                            }
+                                            {
+                                                this.props.abilities!==undefined?
+                                                    <DataLine header="Abilities:" content={
+                                                        this.props.abilities.map((x,i)=>(i!==0?', ':' ')+ x.ability.name)
+                                                    }/>:
+                                                        null
+                                            }
+                                            {
+                                                this.props.stats!==undefined?
+                                                        <div id="Stats" style={styles.Stats}>
+                                                            <a href style={styles.bolded}>Stats:</a>
+                                                            <ul style={styles.ul}>
+                                                                {
+                                                                    this.props.stats.map((x,i)=>
+                                                                        <li style={styles.li}>
+                                                                        <DataLine header={x.stat.name+":"} content={x.base_stat}/>
+                                                                        </li>
+                                                                    )
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    :
+                                                        null
+                                            }
+                                        </div>
                                     </React.Fragment>
                         }
                     </div>

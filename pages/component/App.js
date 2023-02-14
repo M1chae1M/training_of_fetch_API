@@ -81,6 +81,7 @@ export default class App extends React.Component{
                                     .map((x,i)=>
                                         <PokemonCardRender
                                             key={i}
+                                            fullScreen={false}
                                             name={x.name}
                                             type={x.type}
                                             ID={x.ID}

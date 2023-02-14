@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './component/App';
-// import fetchFunction from './component/fetchFunction';
 import Head from 'next/head';
 
 class Pokemon{
@@ -36,8 +35,6 @@ export default class RenderAndApiURL extends React.Component{
         allFetchesInTableState:[],
         numberOfPage:0,
         displayedPokemonsOnPage:100,
-        // displayedPokemonsOnPage:20,
-        // displayedPokemonsOnPage:5,
         testState:false,
     }
     componentDidMount(e){
