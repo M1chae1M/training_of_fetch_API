@@ -1,25 +1,19 @@
 import React from "react";
 import axios from "axios";
 import Link from "next/link";
-// import DataLine from "../component/PokemonCardRenderComponents/DataLine";
 import PokemonCardRender from "../component/PokemonCardRender";
 
 export async function getStaticPaths(){
     const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1008')
-    const {results}= data;
-    const name= results.map(({name})=>({name}));
-    const paths = name.map(({name}) => ({params: {id: name}}));
+    const {results}=data;
+    const paths=results.map(({name})=>({params: {id: name}}))
     return{
         paths,
-        fallback: false,
+        fallback:false,
     }
 }
-  
-export async function getStaticProps({params}){
-    return{
-        props:{id:params.id}
-    }
-}
+
+export const getStaticProps=async({params})=>({props:{id:params.id}})
 
 export default class Pokemon extends React.Component{
     state={
@@ -77,24 +71,22 @@ export default class Pokemon extends React.Component{
             }
         }
         return(
-            <React.Fragment>
-                <div id="App" style={styles.App}>
-                    <PokemonCardRender
-                        fullScreen={true}
-                        name={name}
-                        type={types}
-                        ID={id}
-                        weight={weight}
-                        cardHeight="80vh"
-                        cardWidth="50vw"
-                        abilities={abilities}
-                        height={height}
-                        stats={stats}
-                        base_experience={base_experience}
-                    />
-                    <Link href={'/'}><div style={styles.backButton}>↩️</div></Link>
-                </div>
-            </React.Fragment>
-        );
+            <div id="App" style={styles.App}>
+                <PokemonCardRender
+                    fullScreen={true}
+                    name={name}
+                    type={types}
+                    ID={id}
+                    weight={weight}
+                    cardHeight="80vh"
+                    cardWidth="50vw"
+                    abilities={abilities}
+                    height={height}
+                    stats={stats}
+                    base_experience={base_experience}
+                />
+                <Link href={'/'}><div style={styles.backButton}>↩️</div></Link>
+            </div>
+        )
     }
 }

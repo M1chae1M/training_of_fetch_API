@@ -1,14 +1,6 @@
 import React from 'react';
 import App from './component/App';
-
-class Pokemon{
-    constructor(ID, name, type, weight){
-       this.ID=ID
-       this.name=name
-       this.type=type
-       this.weight=weight
-   }
-}
+import Pokemon from '@/classes/Pokemon';
 
 export default class RenderAndApiURL extends React.Component{
     state={
@@ -39,19 +31,15 @@ export default class RenderAndApiURL extends React.Component{
         const {displayedPokemonsOnPage,allFetchesInTableState,numberOfPage}=this.state
         let timeoutID;
         const debounce=(e)=>{
-            const {value}=e.target
-            if(timeoutID){clearTimeout(timeoutID)}
+            const {value}=e.target;
+            timeoutID && clearTimeout(timeoutID);
             timeoutID=setTimeout(()=>{
                 this.fetchFunction(parseInt(value));
                 this.setState({displayedPokemonsOnPage:parseInt(value)});
             },1000);
         }
         return(
-            <App
-                displayedPokemonsOnPage={displayedPokemonsOnPage}
-                allFetches={allFetchesInTableState}
-                debounce={debounce}
-            />
+            <App displayedPokemonsOnPage={displayedPokemonsOnPage} allFetches={allFetchesInTableState} debounce={debounce}/>
         )
     }
 }
