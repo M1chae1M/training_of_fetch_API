@@ -66,6 +66,8 @@ export default class PokemonCardRender extends React.Component{
                 marginLeft:'10px',
             },
         }
+        const imgSRC=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ID}.png`
+        const imgOnLoad=()=>this.setState({loadingState:false})
         return(
             <>
                     <div className="PokemonCard" style={styles.PokemonCardRender}>
@@ -77,12 +79,7 @@ export default class PokemonCardRender extends React.Component{
                                             loadingState &&
                                             <div>loading...</div>
                                         }
-                                        <img
-                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ID}.png`}
-                                            onLoad={()=>this.setState({loadingState:false})}
-                                            style={styles.img}
-                                            alt=""
-                                        />
+                                        <img src={imgSRC} onLoad={imgOnLoad} style={styles.img} alt=""/>
                                     </div>
                                     <div id="Data" style={styles.Data}>
                                         <DataLine header="ID:" content="loading..."/>
@@ -110,11 +107,7 @@ export default class PokemonCardRender extends React.Component{
                                     <>
                                         <Link href={`/pokemons/${this.props.name}`}>
                                             <div id="imgDiv" style={styles.imgDiv}>
-                                                <img
-                                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ID}.png`}
-                                                    style={styles.img}
-                                                    alt=""
-                                                />
+                                                <img src={imgSRC} style={styles.img} alt=""/>
                                             </div>
                                         </Link>
                                         <div id="Data" style={styles.Data}>
@@ -136,18 +129,18 @@ export default class PokemonCardRender extends React.Component{
                                             }
                                             {
                                                 stats &&
-                                                        <div id="Stats" style={styles.Stats}>
-                                                            <a href style={styles.bolded}>Stats:</a>
-                                                            <ul style={styles.ul}>
-                                                                {
-                                                                    stats.map((x,i)=>
-                                                                        <li style={styles.li} key={x.stat.name}>
-                                                                            <DataLine header={x.stat.name+":"} content={x.base_stat}/>
-                                                                        </li>
-                                                                    )
-                                                                }
-                                                            </ul>
-                                                        </div>
+                                                    <div id="Stats" style={styles.Stats}>
+                                                        <a style={styles.bolded}>Stats:</a>
+                                                        <ul style={styles.ul}>
+                                                            {
+                                                                stats.map(({stat,base_stat})=>
+                                                                    <li style={styles.li} key={stat.name}>
+                                                                        <DataLine header={stat.name+":"} content={base_stat}/>
+                                                                    </li>
+                                                                )
+                                                            }
+                                                        </ul>
+                                                    </div>
                                                    
                                             }
                                         </div>
