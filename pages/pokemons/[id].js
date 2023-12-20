@@ -17,7 +17,7 @@ export async function getStaticPaths(){
   
 export async function getStaticProps({params}){
     return{
-        props:{params},
+        props:{id:params.id}
     }
 }
 
@@ -27,10 +27,13 @@ export default class Pokemon extends React.Component{
         loadingState:false,
     }
     componentDidMount(){
-        const newURL=`https://pokeapi.co/api/v2/pokemon/${this.props.params.id}`
+        const {id}=this.props
+        const newURL=`https://pokeapi.co/api/v2/pokemon/${id}`
         axios.get(newURL).then(({data})=>this.setState({newObject:data}))
     }
     render(){
+        const {newObject,loadingState}=this.state
+        const {name,types,id,weight,abilities,height,stats,base_experience}=newObject
         const styles={
             App:{
                 width:'100vw',
@@ -44,7 +47,6 @@ export default class Pokemon extends React.Component{
             PokemonCardRender:{
                 border:'solid 1px var(--pokemonCardBorderColor)',
                 fontSize:'0.9rem',
-                // width:'auto',
                 width:'fit-content',
                 height:'200px',
                 textAlign:'center',
@@ -66,7 +68,7 @@ export default class Pokemon extends React.Component{
                 alignItems:'center',
             },
             img:{
-                display:this.state.loadingState===true?'none':'',
+                display:loadingState?'none':'',
             },
             backButton:{
                 position:'absolute',
@@ -74,8 +76,6 @@ export default class Pokemon extends React.Component{
                 right:'0%',
             }
         }
-        const {newObject}=this.state
-        const {name,types,id,weight,abilities,height,stats,base_experience}=newObject
         return(
             <React.Fragment>
                 <div id="App" style={styles.App}>

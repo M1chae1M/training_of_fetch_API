@@ -6,6 +6,7 @@ export default class RightMenu extends React.Component{
     }
     render(){
         const {displayedPokemonsOnPage,debounce}=this.props
+        const {showInput}=this.state
         const styles={
             rightMenu:{
                 main:{
@@ -44,7 +45,7 @@ export default class RightMenu extends React.Component{
         return(
             <div style={styles.rightMenu.main} id="RightMenu" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                 {
-                    this.state.showInput &&
+                    showInput &&
                     <div style={styles.rightMenu.header} id="rightMenuHeader">Number of displayed pokemons: </div>
                 }
                 <input

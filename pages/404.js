@@ -1,31 +1,8 @@
 import React from "react";
 import Router from "next/router";
+import Countdown from "react-countdown";
 
-var startFrom=0;
 export default class Error404 extends React.Component{
-    state={
-        startFrom:0,
-    }
-    componentDidMount(){
-        startFrom=this.state.startFrom;
-        const loop=()=>{
-            if(startFrom<3){
-                setTimeout(()=>{
-                    console.log(3-startFrom);
-                    startFrom++;
-                    this.setState({startFrom:this.state.startFrom+1})
-                    loop();
-                },1000)
-            }else if(startFrom>3){
-                setTimeout(()=>{
-                    Router.push('/')
-                    startFrom++;
-                    this.setState({startFrom:this.state.startFrom+1})
-                },1000)
-            }
-        }
-        loop()
-    }
     render(){
         const styles={
             App:{
@@ -38,11 +15,15 @@ export default class Error404 extends React.Component{
                 alignContent:'center',
             },
         }
+        const onComplete=()=>Router.push('/')
+        const renderer=({seconds})=><span>{seconds}</span>
+        const date=Date.now()+4000
+        const Timer=<Countdown date={date} onComplete={onComplete} renderer={renderer}/>
         return(
             <div id="App" style={styles.App}>
                 <p>Przepraszamy, ale taka strona nie istnieje!</p>
                 <p>Zwróć uwagę, czy nie zrobiłeś literówki.</p>
-                <p>Za {3-this.state.startFrom} sekundy zostaniesz przekierowany na stronę główną.</p>
+                <p>Za {Timer} sekundy zostaniesz przekierowany na stronę główną.</p>
             </div>
         );
     }
