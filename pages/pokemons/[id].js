@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Link from "next/link";
-import DataLine from "../component/PokemonCardRenderComponents/DataLine";
+// import DataLine from "../component/PokemonCardRenderComponents/DataLine";
 import PokemonCardRender from "../component/PokemonCardRender";
 
 export async function getStaticPaths(){
@@ -27,10 +27,8 @@ export default class Pokemon extends React.Component{
         loadingState:false,
     }
     componentDidMount(){
-        let newURL=`https://pokeapi.co/api/v2/pokemon/${this.props.params.id}`
-        axios.get(newURL)
-        .then(res=>{return res.data})
-        .then(res=>this.setState({newObject:res}))
+        const newURL=`https://pokeapi.co/api/v2/pokemon/${this.props.params.id}`
+        axios.get(newURL).then(({data})=>this.setState({newObject:data}))
     }
     render(){
         const styles={
@@ -76,21 +74,23 @@ export default class Pokemon extends React.Component{
                 right:'0%',
             }
         }
+        const {newObject}=this.state
+        const {name,types,id,weight,abilities,height,stats,base_experience}=newObject
         return(
             <React.Fragment>
                 <div id="App" style={styles.App}>
                     <PokemonCardRender
                         fullScreen={true}
-                        name={this.state.newObject.name}
-                        type={this.state.newObject.types}
-                        ID={this.state.newObject.id}
-                        weight={this.state.newObject.weight}
+                        name={name}
+                        type={types}
+                        ID={id}
+                        weight={weight}
                         cardHeight="80vh"
                         cardWidth="50vw"
-                        abilities={this.state.newObject.abilities}
-                        height={this.state.newObject.height}
-                        stats={this.state.newObject.stats}
-                        base_experience={this.state.newObject.base_experience}
+                        abilities={abilities}
+                        height={height}
+                        stats={stats}
+                        base_experience={base_experience}
                     />
                     <Link href={'/'}><div style={styles.backButton}>↩️</div></Link>
                 </div>

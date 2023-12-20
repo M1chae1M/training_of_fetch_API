@@ -5,6 +5,7 @@ export default class RightMenu extends React.Component{
         showInput:false,
     }
     render(){
+        const {displayedPokemonsOnPage,debounce}=this.props
         const styles={
             rightMenu:{
                 main:{
@@ -38,24 +39,22 @@ export default class RightMenu extends React.Component{
                 },
             }
         }
+        const onMouseEnter=()=>this.setState({showInput:true})
+        const onMouseLeave=()=>this.setState({showInput:false})
         return(
-            <div style={styles.rightMenu.main} id="RightMenu"
-            onMouseEnter={()=>{this.setState({showInput:true})}}
-            onMouseLeave={()=>{this.setState({showInput:false})}}
-            >
+            <div style={styles.rightMenu.main} id="RightMenu" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                 {
-                    this.state.showInput===true?
-                        <div style={styles.rightMenu.header} id="rightMenuHeader">Number of displayed pokemons: </div>
-                            :null
+                    this.state.showInput &&
+                    <div style={styles.rightMenu.header} id="rightMenuHeader">Number of displayed pokemons: </div>
                 }
                 <input
                     type="number"
                     style={styles.rightMenu.input}
-                    defaultValue={this.props.displayedPokemonsOnPage}
+                    defaultValue={displayedPokemonsOnPage}
                     placeholder='Number of displayed pokemons'
-                    onChange={this.props.debounce}
+                    onChange={debounce}
                 />
             </div>
-        );
+        )
     }
 }

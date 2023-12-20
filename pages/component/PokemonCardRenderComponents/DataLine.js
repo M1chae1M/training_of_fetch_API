@@ -12,7 +12,7 @@ export default class DataLine extends React.Component{
         }
         return(
             <div className="DataLine" style={styles.DataLine}>
-                <a href style={styles.bolded}>{this.props.header}</a> {this.props.content}
+                <a style={styles.bolded}>{this.props.header}</a> {this.props.content}
             </div>
         );
     }

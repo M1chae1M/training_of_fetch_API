@@ -52,16 +52,11 @@ export default class RenderAndApiURL extends React.Component{
             },1000);
         }
         return(
-            <React.Fragment>
-                {/* {console.log(this.props.pageProps)} */}
-                {/* {console.log(this.props.data)} */}
-                <App
+            <App
                 displayedPokemonsOnPage={this.state.displayedPokemonsOnPage}
                 allFetches={this.state.allFetchesInTableState}
                 debounce={debounce}
             />
-            </React.Fragment>
-      
-        );
+        )
     }
 }
