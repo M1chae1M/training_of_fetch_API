@@ -10,7 +10,15 @@ export default class PokemonCardRender extends React.Component{
     }
     render(){
         const {loadingState}=this.state
-        const {cardWidth,cardHeight,fullScreen,height,base_experience,abilities,stats,ID,name,type,weight}=this.props
+        const {cardWidth,cardHeight,fullScreen,
+            height,base_experience,abilities,stats,ID,name,type,weight,
+        
+            // newObject
+        }=this.props
+        // const {ID}=newObject??''
+        // const {height,base_experience,abilities,stats,ID,name,type,weight}=newObject??''
+
+        // console.log(newObject)
         const styles={
             PokemonCardRender:{
                 border:'solid 1px var(--PCBorderColor)',
@@ -78,7 +86,7 @@ export default class PokemonCardRender extends React.Component{
                             <LOAD_img loadingState={loadingState} imgSRC={imgSRC} imgOnLoad={imgOnLoad}/>
                         </PokemonCardRenderLOADING>:
                     <>
-                        <Link href={`/pokemons/${this.props.name}`}>
+                        <Link href={`/pokemons/${name}`}>
                             <div id="imgDiv" style={styles.imgDiv}>
                                 <img src={imgSRC} style={styles.img} alt=""/>
                             </div>
