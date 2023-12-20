@@ -1,6 +1,9 @@
 import React from "react";
 import DataLine from "./PokemonCardRenderComponents/DataLine";
 import Link from "next/link";
+import LOAD_img from "./PokemonCardRenderComponents/LoadIMG";
+import PokemonCardRenderLOADING from "./PokemonCardRenderComponents/PokemonCardRenderLOADING";
+// import PokemonCardRenderLOADING from "./PokemonCardRenderComponents/PokemonCardRenderLOADING";
 
 export default class PokemonCardRender extends React.Component{
     state={
@@ -68,42 +71,16 @@ export default class PokemonCardRender extends React.Component{
         }
         const imgSRC=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ID}.png`
         const imgOnLoad=()=>this.setState({loadingState:false})
+        // const imgOnLoad=()=>{}
         return(
             <>
                     <div className="PokemonCard" style={styles.PokemonCardRender}>
                         {
                             loadingState?
-                            <>
-                                    <div id="imgDiv" style={styles.imgDiv}>
-                                        {
-                                            loadingState &&
-                                            <div>loading...</div>
-                                        }
-                                        <img src={imgSRC} onLoad={imgOnLoad} style={styles.img} alt=""/>
-                                    </div>
-                                    <div id="Data" style={styles.Data}>
-                                        <DataLine header="ID:" content="loading..."/>
-                                        <DataLine header="Name:" content="loading..."/>
-                                        <DataLine header="Type:" content="loading..."/>
-                                        <DataLine header="Weight:" content="loading..."/>
-                                        {
-                                            this.props.height &&
-                                            <DataLine header="Height:" content="loading..."/>
-                                        }
-                                        {
-                                            this.props.base_experience &&
-                                            <DataLine header="Base experience:" content="loading..."/>
-                                        }
-                                        {
-                                            this.props.abilities &&
-                                            <DataLine header="Abilities:" content="loading..."/>
-                                        }
-                                        {
-                                            this.props.stats &&
-                                            <DataLine header="Stats:" content="loading..."/>
-                                        }
-                                    </div>
-                                </>:
+                            <PokemonCardRenderLOADING fullScreen={fullScreen} cardHeight={cardHeight}>
+                                <LOAD_img loadingState={loadingState} imgSRC={imgSRC} imgOnLoad={imgOnLoad}/>
+                            </PokemonCardRenderLOADING>
+                            :
                                     <>
                                         <Link href={`/pokemons/${this.props.name}`}>
                                             <div id="imgDiv" style={styles.imgDiv}>
