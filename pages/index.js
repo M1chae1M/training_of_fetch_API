@@ -1,6 +1,7 @@
 import {Component} from 'react';
 import App from './component/App';
 import Pokemon from '@/classes/Pokemon';
+import URL from '@/config/API_url.json'
 
 export default class RenderAndApiURL extends Component{
     state={
@@ -14,7 +15,7 @@ export default class RenderAndApiURL extends Component{
         if(targ>0){
             const allPokemons=[];
             for(let i=pageID*targ+1;i<pageID*targ+targ+1;i++){
-                const url=`https://pokeapi.co/api/v2/pokemon/${i}`;
+                const url=`${URL}/pokemon/${i}`;
                 fetch(url)
                 .then((res)=>res.json())
                 .then(({id,name,types,weight})=>allPokemons.push(new Pokemon(id,name,types,weight)))

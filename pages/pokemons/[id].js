@@ -2,9 +2,10 @@ import {Component} from "react";
 import axios from "axios";
 import Link from "next/link";
 import PokemonCardRender from "../component/PokemonCardRender";
+import URL from '@/config/API_url.json'
 
 export async function getStaticPaths(){
-    const {data}=await axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1008')
+    const {data}=await axios.get(`${URL}/pokemon/?offset=0&limit=1008`)
     const {results}=data;
     const paths=results.map(({name})=>({params: {id: name}}))
     return{
@@ -22,7 +23,7 @@ export default class Pokemon extends Component{
     }
     componentDidMount(){
         const {id}=this.props
-        const newURL=`https://pokeapi.co/api/v2/pokemon/${id}`
+        const newURL=`${URL}/pokemon/${id}`
         axios.get(newURL).then(({data})=>this.setState({newObject:data}))
     }
     render(){

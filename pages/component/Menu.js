@@ -1,11 +1,12 @@
 import React from "react";
+import URL from '@/config/API_url.json'
 
 export default class Menu extends React.Component{
     state={
         allTypes:[],
     }
     componentDidMount(){
-        fetch('https://pokeapi.co/api/v2/generation/1/')
+        fetch(`${URL}/generation/1/`)
         .then((res)=>res.json())
         .then(({types})=>this.setState({allTypes:types}))
     }
