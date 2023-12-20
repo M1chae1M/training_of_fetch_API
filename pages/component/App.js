@@ -48,34 +48,18 @@ export default class App extends React.Component{
 
         return(
             <div id='App' style={styles.App}>
-                <Menu
-                    searchedName={searchedName}
-                    allTypes={allTypes}
-                    showType={showType}
-                    changeName={changeName}
-                    changeType={changeType}
-                    clearFilters={clearFilters}
-                />
+                <Menu searchedName={searchedName} allTypes={allTypes} showType={showType} changeName={changeName} changeType={changeType} clearFilters={clearFilters}/>
                 <RightMenu pageLimit={pageLimit} debounce={debounce}/>
                 <div id='PokemonList' style={styles.PokemonList}>
                     {
                         allFetches?
                             checkAllFilters?.map(({name,type,weight,ID},i)=>
-                                <PokemonCardRender
-                                    // key={name}
-                                    key={i}
-                                    fullScreen={false}
-                                    name={name}
-                                    type={type}
-                                    ID={ID}
-                                    weight={weight}
-                                    allFetches={allFetches}
-                                />
+                                <PokemonCardRender key={i} fullScreen={false} name={name} type={type} ID={ID} weight={weight} allFetches={allFetches}/>
                             ):
                         <div style={styles.noResults}>No results!</div>
                     }
                 </div>
             </div>
-        );
+        )
     }
 }

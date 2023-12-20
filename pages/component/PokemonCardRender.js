@@ -71,61 +71,54 @@ export default class PokemonCardRender extends React.Component{
         const imgSRC=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ID}.png`
         const imgOnLoad=()=>this.setState({loadingState:false})
         return(
-            <>
-                <div className="PokemonCard" style={styles.PokemonCardRender}>
-                    {
-                        loadingState?
+            <div className="PokemonCard" style={styles.PokemonCardRender}>
+                {
+                    loadingState?
                         <PokemonCardRenderLOADING fullScreen={fullScreen} cardHeight={cardHeight}>
                             <LOAD_img loadingState={loadingState} imgSRC={imgSRC} imgOnLoad={imgOnLoad}/>
-                        </PokemonCardRenderLOADING>
-                        :
-                            <>
-                                <Link href={`/pokemons/${this.props.name}`}>
-                                    <div id="imgDiv" style={styles.imgDiv}>
-                                        <img src={imgSRC} style={styles.img} alt=""/>
-                                    </div>
-                                </Link>
-                                <div id="Data" style={styles.Data}>
-                                    <DataLine header="ID:" content={ID}/>
-                                    <DataLine header="Name:" content={name}/>
-                                    <DataLine header="Type:" content={type?.map((x,i)=>(i!==0?', ':' ')+ x.type.name)}/>
-                                    <DataLine header="Weight:" content={weight+' kg'}/>
-                                    {
-                                        height &&
-                                        <DataLine header="Height:" content={height+' m'}/>
-                                    }
-                                    {
-                                        base_experience &&
-                                        <DataLine header="Base experience:" content={base_experience}/>
-                                    }
-                                    {
-                                        abilities &&
-                                        <DataLine header="Abilities:" content={abilities?.map((x,i)=>(i!==0?', ':' ')+ x.ability.name)}/>
-                                    }
-                                    {
-                                        stats &&
-                                        <div id="Stats" style={styles.Stats}>
-                                            <a style={styles.bolded}>Stats:</a>
-                                            <ul style={styles.ul}>
-                                                {
-                                                    stats.map(({stat,base_stat},i)=>
-                                                        <li style={styles.li}
-                                                        // key={stat.name}
-                                                        key={i}
-                                                        >
-                                                            <DataLine header={stat.name+":"} content={base_stat}/>
-                                                        </li>
-                                                    )
-                                                }
-                                            </ul>
-                                        </div>
-                                            
-                                    }
+                        </PokemonCardRenderLOADING>:
+                    <>
+                        <Link href={`/pokemons/${this.props.name}`}>
+                            <div id="imgDiv" style={styles.imgDiv}>
+                                <img src={imgSRC} style={styles.img} alt=""/>
+                            </div>
+                        </Link>
+                        <div id="Data" style={styles.Data}>
+                            <DataLine header="ID:" content={ID}/>
+                            <DataLine header="Name:" content={name}/>
+                            <DataLine header="Type:" content={type?.map((x,i)=>(i!==0?', ':' ')+ x.type.name)}/>
+                            <DataLine header="Weight:" content={weight+' kg'}/>
+                            {
+                                height &&
+                                <DataLine header="Height:" content={height+' m'}/>
+                            }
+                            {
+                                base_experience &&
+                                <DataLine header="Base experience:" content={base_experience}/>
+                            }
+                            {
+                                abilities &&
+                                <DataLine header="Abilities:" content={abilities?.map((x,i)=>(i!==0?', ':' ')+ x.ability.name)}/>
+                            }
+                            {
+                                stats &&
+                                <div id="Stats" style={styles.Stats}>
+                                    <a style={styles.bolded}>Stats:</a>
+                                    <ul style={styles.ul}>
+                                        {
+                                            stats.map(({stat,base_stat},i)=>
+                                                <li style={styles.li} key={i}>
+                                                    <DataLine header={stat.name+":"} content={base_stat}/>
+                                                </li>
+                                            )
+                                        }
+                                    </ul>
                                 </div>
-                            </>
-                    }
-                </div>
-            </>
+                            }
+                        </div>
+                    </>
+                }
+            </div>
         )
     }
 }

@@ -2,23 +2,21 @@ import DataLine from "./DataLine"
 
 const PokemonCardRenderLOADING=({children,fullScreen,cardHeight})=>{
     const styles={
-        Data:{
-            display:'grid',
-            justifyItems:!fullScreen && 'center',
-            width:fullScreen && '70%',
-            minWidth:fullScreen && '230px',
-            padding:fullScreen && '15px',
-            border:fullScreen && 'solid var(--PCBorderColor) 3px',
-            borderRadius:fullScreen && '20px',
-            height:cardHeight?`calc(${cardHeight}*70/100)`:'auto',
-            overflowY:'hidden',
-        }
+        display:'grid',
+        justifyItems:!fullScreen && 'center',
+        width:fullScreen && '70%',
+        minWidth:fullScreen && '230px',
+        padding:fullScreen && '15px',
+        border:fullScreen && 'solid var(--PCBorderColor) 3px',
+        borderRadius:fullScreen && '20px',
+        height:cardHeight?`calc(${cardHeight}*70/100)`:'auto',
+        overflowY:'hidden',
     }
 
     return(
         <>
             {children}
-            <div id="Data" style={styles.Data}>
+            <div id="Data" style={styles}>
                 <DataLine header="ID:" content="loading..."/>
                 <DataLine header="Name:" content="loading..."/>
                 <DataLine header="Type:" content="loading..."/>
