@@ -67,7 +67,10 @@ export default class Menu extends React.Component{
                 }
                 <select style={styles.inputs} onChange={changeSelect} value={pickedTypeToDisplay}>
                     <option value="all" key="0">all</option>
-                    {allTypes?.map(({name})=><option value={name} key={name}>{name}</option>)}
+                    {allTypes?.map(({name},i)=><option value={name}
+                        key={i}
+                        // key={i}
+                    >{name}</option>)}
                 </select>
             </div>
         );

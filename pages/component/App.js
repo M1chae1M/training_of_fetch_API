@@ -66,9 +66,10 @@ export default class App extends React.Component{
                 <div id='PokemonList' style={styles.PokemonList}>
                     {
                         allFetches?
-                                checkAllFilters?.map(({name,type,weight,ID})=>
+                                checkAllFilters?.map(({name,type,weight,ID},i)=>
                                     <PokemonCardRender
-                                        key={name}
+                                        // key={name}
+                                        key={i}
                                         fullScreen={false}
                                         name={name}
                                         type={type}

@@ -133,8 +133,11 @@ export default class PokemonCardRender extends React.Component{
                                                         <a style={styles.bolded}>Stats:</a>
                                                         <ul style={styles.ul}>
                                                             {
-                                                                stats.map(({stat,base_stat})=>
-                                                                    <li style={styles.li} key={stat.name}>
+                                                                stats.map(({stat,base_stat},i)=>
+                                                                    <li style={styles.li}
+                                                                    // key={stat.name}
+                                                                    key={i}
+                                                                    >
                                                                         <DataLine header={stat.name+":"} content={base_stat}/>
                                                                     </li>
                                                                 )
