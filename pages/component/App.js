@@ -55,9 +55,7 @@ export default class App extends React.Component{
                         allFetches?
                             checkAllFilters?.map(({name,type,weight,ID},i)=>
                                 <PokemonCardRender key={i} fullScreen={false}
-                                name={name} type={type} ID={ID} weight={weight}
-                                // newObject={{name,type,weight,ID}}
-                                allFetches={allFetches}
+                                    name={name} type={type} ID={ID} weight={weight}
                                 />
                             ):
                         <div style={styles.noResults}>No results!</div>
