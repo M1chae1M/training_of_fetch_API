@@ -10,7 +10,7 @@ export default class Menu extends React.Component{
         .then(({types})=>this.setState({allTypes:types}))
     }
     render(){
-        const {onchangeinput,searchedName,showType,clearFilters,changeSelect}=this.props
+        const {changeName,searchedName,showType,clearFilters,changeType}=this.props
         const {allTypes}=this.state
         const styles={
             Menu:{
@@ -55,7 +55,8 @@ export default class Menu extends React.Component{
         return(
             <div id="Menu" style={styles.Menu}>
                 <input
-                    type="text" onChange={onchangeinput}
+                    type="text"
+                    onChange={changeName}
                     value={searchedName}
                     placeholder="Search pokemon by his name..."
                     id="SearchInputComponent"
@@ -65,7 +66,7 @@ export default class Menu extends React.Component{
                     searchedName!==''||showType!=='all' &&
                     <input type="button" value="🞮" style={styles.X} onClick={clearFilters}/>
                 }
-                <select style={styles.inputs} onChange={changeSelect} value={showType}>
+                <select style={styles.inputs} onChange={changeType} value={showType}>
                     <option value="all" key="0">all</option>
                     {allTypes?.map(({name},i)=><option value={name}
                         key={i}

@@ -38,19 +38,13 @@ export default class App extends React.Component{
                 fontSize:'1.5rem',
             },
         }
-        const onchangeinput=(e)=>this.setState({searchedName:e.target.value})
-        const changeSelect=(e)=>this.setState({showType:e.target.value})
+        const changeName=(e)=>this.setState({searchedName:e.target.value})
+        const changeType=(e)=>this.setState({showType:e.target.value})
         const clearFilters=()=>this.setState({searchedName:'',showType:'all'})
 
-        const checkAllFilters=
-       allFetches?.filter?.(pokemonName=>searchedName!==''?
-            pokemonName.name.slice(0,searchedName.length).toUpperCase()===searchedName.toUpperCase():
-                true)
-        .filter(y=>showType!=='all'?
-            (y.type?.length>1?
-                (y.type[0].type.name===showType || y.type[1].type.name===showType):
-                    y.type[0].type.name===showType)
-        :true)
+        const checkAllFilters=allFetches
+        ?.filter?.(pokemonName=>searchedName!=='' ? pokemonName.name.slice(0,searchedName.length).toUpperCase()===searchedName.toUpperCase() : true)
+        ?.filter(({type})=>showType!=='all' ? type.some(({type})=>type.name===showType) : true)
 
         return(
             <div id='App' style={styles.App}>
@@ -58,26 +52,26 @@ export default class App extends React.Component{
                     searchedName={searchedName}
                     allTypes={allTypes}
                     showType={showType}
-                    onchangeinput={onchangeinput}
-                    changeSelect={changeSelect}
+                    changeName={changeName}
+                    changeType={changeType}
                     clearFilters={clearFilters}
                 />
                 <RightMenu pageLimit={pageLimit} debounce={debounce}/>
                 <div id='PokemonList' style={styles.PokemonList}>
                     {
                         allFetches?
-                                checkAllFilters?.map(({name,type,weight,ID},i)=>
-                                    <PokemonCardRender
-                                        // key={name}
-                                        key={i}
-                                        fullScreen={false}
-                                        name={name}
-                                        type={type}
-                                        ID={ID}
-                                        weight={weight}
-                                        allFetches={allFetches}
-                                    />
-                                ):
+                            checkAllFilters?.map(({name,type,weight,ID},i)=>
+                                <PokemonCardRender
+                                    // key={name}
+                                    key={i}
+                                    fullScreen={false}
+                                    name={name}
+                                    type={type}
+                                    ID={ID}
+                                    weight={weight}
+                                    allFetches={allFetches}
+                                />
+                            ):
                         <div style={styles.noResults}>No results!</div>
                     }
                 </div>
