@@ -6,6 +6,7 @@ const styles={
         fontWeight:'bold',
     },
 }
+
 const DataLine=({header,content})=>(
     <div className="DataLine" style={styles.DataLine}>
         <a style={styles.bolded}>{header}</a> {content}

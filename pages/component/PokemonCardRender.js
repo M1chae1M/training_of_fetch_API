@@ -13,7 +13,7 @@ export default class PokemonCardRender extends React.Component{
         const {cardWidth,cardHeight,fullScreen,height,base_experience,abilities,stats,ID,name,type,weight}=this.props
         const styles={
             PokemonCardRender:{
-                border:'solid 1px var(--pokemonCardBorderColor)',
+                border:'solid 1px var(--PCBorderColor)',
                 fontSize:'0.9rem',
                 width:cardWidth?cardWidth:'auto',
                 minWidth:cardWidth?'240px':'none',
@@ -24,13 +24,13 @@ export default class PokemonCardRender extends React.Component{
                 display:'grid',
                 boxShadow:'var(--shadow) 2px 2px',
                 justifyItems:'center',
-                backgroundColor:'var(--pokemonCardBorderColor)',
+                backgroundColor:'var(--PCBorderColor)',
                 overflow:'hidden',
-                background:'linear-gradient(348deg,var(--pokemonCardBorderColor) 0%,var(--pokemonCardBorderBackground) 20%)',
+                background:'linear-gradient(348deg,var(--PCBorderColor) 0%,var(--PCBorderBackground) 20%)',
             },
             imgDiv:{
                 margin:'3px',
-                border:'solid var(--pokemonCardBorderColor) 3px',
+                border:'solid var(--PCBorderColor) 3px',
                 borderRadius:'20px',
                 display:'grid',
                 alignItems:'center',
@@ -56,7 +56,7 @@ export default class PokemonCardRender extends React.Component{
                 width:fullScreen && '70%',
                 minWidth:fullScreen && '230px',
                 padding:fullScreen && '15px',
-                border:fullScreen && 'solid var(--pokemonCardBorderColor) 3px',
+                border:fullScreen && 'solid var(--PCBorderColor) 3px',
                 borderRadius:fullScreen && '20px',
                 height:cardHeight?`calc(${cardHeight}*70/100)`:'auto',
                 overflowY:'overlay',

@@ -10,7 +10,7 @@ export default class Menu extends React.Component{
         .then(({types})=>this.setState({allTypes:types}))
     }
     render(){
-        const {onchangeinput,searchInputValue,pickedTypeToDisplay,clearFilters,changeSelect}=this.props
+        const {onchangeinput,searchedName,pickedTypeToDisplay,clearFilters,changeSelect}=this.props
         const {allTypes}=this.state
         const styles={
             Menu:{
@@ -19,7 +19,7 @@ export default class Menu extends React.Component{
                 display:'grid',
                 borderRadius:'5px',
                 overflow:'hidden',
-                backgroundColor:'var(--pokemonCardBorderBackground)',
+                backgroundColor:'var(--PCBorderBackground)',
                 width:'fit-content',
                 gridAutoFlow:'column',
             },
@@ -27,16 +27,16 @@ export default class Menu extends React.Component{
                 height:'100%',
                 borderBottomLeftRadius:'5px',
                 borderTopLeftRadius:'5px',
-                backgroundColor:'var(--pokemonCardBorderBackground)',
+                backgroundColor:'var(--PCBorderBackground)',
                 color:'black',
-                border:'solid 2px var(--pokemonCardBorderColor)',
+                border:'solid 2px var(--PCBorderColor)',
                 width:'200px',
             },
             inputs:{
                 height:'100%',
                 width:'fit-content',
-                border:'solid 2px var(--pokemonCardBorderColor)',
-                backgroundColor:'var(--pokemonCardBorderBackground)',
+                border:'solid 2px var(--PCBorderColor)',
+                backgroundColor:'var(--PCBorderBackground)',
                 borderBottomRightRadius:'5px',
                 borderTopRightRadius:'5px',
                 color:'var(--shadow)',
@@ -48,21 +48,21 @@ export default class Menu extends React.Component{
                 paddingRight:'5px',
                 fontWeight:'bold',
                 width:'fit-content',
-                border:'solid 2px var(--pokemonCardBorderColor)',
-                backgroundColor:'var(--pokemonCardBorderBackground)',
+                border:'solid 2px var(--PCBorderColor)',
+                backgroundColor:'var(--PCBorderBackground)',
             },
         }
         return(
             <div id="Menu" style={styles.Menu}>
                 <input
                     type="text" onChange={onchangeinput}
-                    value={searchInputValue}
+                    value={searchedName}
                     placeholder="Search pokemon by his name..."
                     id="SearchInputComponent"
                     style={styles.SearchInputComponent}
                 />
                 {
-                    searchInputValue!==''||pickedTypeToDisplay!=='all' &&
+                    searchedName!==''||pickedTypeToDisplay!=='all' &&
                     <input type="button" value="🞮" style={styles.X} onClick={clearFilters}/>
                 }
                 <select style={styles.inputs} onChange={changeSelect} value={pickedTypeToDisplay}>

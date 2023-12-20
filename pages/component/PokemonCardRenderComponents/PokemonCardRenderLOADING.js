@@ -8,7 +8,7 @@ const PokemonCardRenderLOADING=({children,fullScreen,cardHeight})=>{
             width:fullScreen && '70%',
             minWidth:fullScreen && '230px',
             padding:fullScreen && '15px',
-            border:fullScreen && 'solid var(--pokemonCardBorderColor) 3px',
+            border:fullScreen && 'solid var(--PCBorderColor) 3px',
             borderRadius:fullScreen && '20px',
             height:cardHeight?`calc(${cardHeight}*70/100)`:'auto',
             overflowY:'hidden',

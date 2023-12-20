@@ -6,12 +6,12 @@ import RightMenu from './RightMenu';
 export default class App extends React.Component{
     state={
         resultsOf:[],
-        searchInputValue:'',
+        searchedName:'',
         pickedTypeToDisplay:'all',
     }
     render(){
-        const {displayedPokemonsOnPage,debounce,allFetches}=this.props
-        const {searchInputValue,allTypes,pickedTypeToDisplay}=this.state
+        const {PageLimit,debounce,allFetches}=this.props
+        const {searchedName,allTypes,pickedTypeToDisplay}=this.state
         const styles={
             App:{
                 display:'grid',
@@ -38,16 +38,16 @@ export default class App extends React.Component{
                 fontSize:'1.5rem',
             },
         }
-        const onchangeinput=(e)=>this.setState({searchInputValue:e.target.value})
+        const onchangeinput=(e)=>this.setState({searchedName:e.target.value})
         const changeSelect=(e)=>this.setState({pickedTypeToDisplay:e.target.value})
-        const clearFilters=()=>this.setState({searchInputValue:'',pickedTypeToDisplay:'all'})
+        const clearFilters=()=>this.setState({searchedName:'',pickedTypeToDisplay:'all'})
 
-        var checkAllFilters=
-       allFetches?.filter?.(pokemonName=>(searchInputValue!=='')?
-            pokemonName.name.slice(0,searchInputValue.length).toUpperCase()===searchInputValue.toUpperCase():
+        const checkAllFilters=
+       allFetches?.filter?.(pokemonName=>searchedName!==''?
+            pokemonName.name.slice(0,searchedName.length).toUpperCase()===searchedName.toUpperCase():
                 true)
         .filter(y=>pickedTypeToDisplay!=='all'?
-            (Array.from(y.type).length>1?
+            (y.type?.length>1?
                 (y.type[0].type.name===pickedTypeToDisplay || y.type[1].type.name===pickedTypeToDisplay):
                     y.type[0].type.name===pickedTypeToDisplay)
         :true)
@@ -55,14 +55,14 @@ export default class App extends React.Component{
         return(
             <div id='App' style={styles.App}>
                 <Menu
-                    searchInputValue={searchInputValue}
+                    searchedName={searchedName}
                     allTypes={allTypes}
                     pickedTypeToDisplay={pickedTypeToDisplay}
                     onchangeinput={onchangeinput}
                     changeSelect={changeSelect}
                     clearFilters={clearFilters}
                 />
-                <RightMenu displayedPokemonsOnPage={displayedPokemonsOnPage} debounce={debounce}/>
+                <RightMenu PageLimit={PageLimit} debounce={debounce}/>
                 <div id='PokemonList' style={styles.PokemonList}>
                     {
                         allFetches?

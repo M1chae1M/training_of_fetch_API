@@ -5,7 +5,7 @@ export default class RightMenu extends React.Component{
         showInput:false,
     }
     render(){
-        const {displayedPokemonsOnPage,debounce}=this.props
+        const {PageLimit,debounce}=this.props
         const {showInput}=this.state
         const styles={
             main:{
@@ -13,11 +13,11 @@ export default class RightMenu extends React.Component{
                 right:'0%',
                 top:'0%',
                 width:'fit-content',
-                border:'solid var(--pokemonCardBorderColor) 3px',
+                border:'solid var(--PCBorderColor) 3px',
                 borderBottomLeftRadius:'10px',
                 paddingLeft:'10px',
                 paddingBottom:'3px',
-                backgroundColor:'var(--pokemonCardBorderBackground)',
+                backgroundColor:'var(--PCBorderBackground)',
                 color:'var(--shadow)',
                 borderTop:'none',
                 borderRight:'none',
@@ -31,7 +31,7 @@ export default class RightMenu extends React.Component{
             input:{
                 width:'45px',
                 border:'none',
-                backgroundColor:'var(--pokemonCardBorderBackground)',
+                backgroundColor:'var(--PCBorderBackground)',
                 borderRight:'none',
                 borderTop:'none',
                 color:'var(--shadow)',
@@ -48,7 +48,7 @@ export default class RightMenu extends React.Component{
                 <input
                     type="number"
                     style={styles.input}
-                    defaultValue={displayedPokemonsOnPage}
+                    defaultValue={PageLimit}
                     placeholder='Number of displayed pokemons'
                     onChange={debounce}
                 />

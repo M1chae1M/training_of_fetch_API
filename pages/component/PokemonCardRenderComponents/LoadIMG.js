@@ -2,7 +2,7 @@ const LOAD_img=({loadingState,imgSRC,imgOnLoad})=>{
     const styles={
         imgDiv:{
             margin:'3px',
-            border:'solid var(--pokemonCardBorderColor) 3px',
+            border:'solid var(--PCBorderColor) 3px',
             borderRadius:'20px',
             display:'grid',
             alignItems:'center',

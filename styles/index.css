@@ -1,8 +1,8 @@
 *{box-sizing:border-box;padding:0;margin:0;}
 html,body,#root{width:100vw;height:100vh;position:relative;display:grid;justify-items:center;background-color:#d1d1d1;overflow-x:hidden;}
 :root{
---pokemonCardBorderColor:rgb(78, 78, 78);
---pokemonCardBorderBackground:rgb(168, 168, 168);
+--PCBorderColor:rgb(78, 78, 78);
+--PCBorderBackground:rgb(168, 168, 168);
 --heightOfMenu:25px;
 --shadow:rgb(37, 37, 37);
 }
@@ -20,14 +20,14 @@ animation:scaleUp 0.1s linear forwards;
 border-style:dotted !important;
 }
 div .DataLine:hover{
-border-bottom:solid var(--pokemonCardBorderColor) 2px !important;
+border-bottom:solid var(--PCBorderColor) 2px !important;
 animation:fontPlus 0.1s linear forwards;
 }
 .PokemonCard:hover{
 opacity:0.7;
 box-shadow:var(--shadow) 1px 1px !important;
 border-style:dashed !important;
-color:var(--pokemonCardBorderColor);
+color:var(--PCBorderColor);
 }
 #rightMenu>*{
 animation:fromzero 1s linear forwards;
