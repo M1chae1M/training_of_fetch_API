@@ -3,14 +3,15 @@ import React from "react";
 export default class Menu extends React.Component{
     state={
         allTypes:[],
-        // scrolled:0,
     }
     componentDidMount(){
         fetch('https://pokeapi.co/api/v2/generation/1/')
-        .then((respond)=>respond.json())
-        .then((respond)=>this.setState({allTypes:respond.types}))
+        .then((res)=>res.json())
+        .then(({types})=>this.setState({allTypes:types}))
     }
     render(){
+        const {onchangeinput,searchInputValue,pickedTypeToDisplay,clearFilters,changeSelect}=this.props
+        const {allTypes}=this.state
         const styles={
             Menu:{
                 position:'fixed',
@@ -23,7 +24,6 @@ export default class Menu extends React.Component{
                 gridAutoFlow:'column',
             },
             SearchInputComponent:{
-                // opacity:this.props.scrolled>0?0.4:1,
                 height:'100%',
                 borderBottomLeftRadius:'5px',
                 borderTopLeftRadius:'5px',
@@ -33,7 +33,6 @@ export default class Menu extends React.Component{
                 width:'200px',
             },
             inputs:{
-                // opacity:this.state.scrolled>0?0.4:1,
                 height:'100%',
                 width:'fit-content',
                 border:'solid 2px var(--pokemonCardBorderColor)',
@@ -44,7 +43,6 @@ export default class Menu extends React.Component{
             },
             X:{
                 color:'var(--shadow)',
-                // opacity:this.state.scrolled>0?0.4:1,
                 height:'100%',
                 paddingLeft:'5px',
                 paddingRight:'5px',
@@ -55,35 +53,21 @@ export default class Menu extends React.Component{
             },
         }
         return(
-            <div id="Menu" style={styles.Menu}
-            // onScroll={(e)=>{
-            //     this.setState({scrolled:window.scrollY})
-            // }}
-            >
-                {/* {document.addEventListener("scroll",(e)=>{this.setState({scrolled:window.scrollY})})} */}
+            <div id="Menu" style={styles.Menu}>
                 <input
-                    type="text"
-                    onChange={this.props.onchangeinput}
-                    value={this.props.searchInputValue}
+                    type="text" onChange={onchangeinput}
+                    value={searchInputValue}
                     placeholder="Search pokemon by his name..."
                     id="SearchInputComponent"
                     style={styles.SearchInputComponent}
                 />
                 {
-                    this.props.searchInputValue!==''||this.props.pickedTypeToDisplay!=='all'?
-                        <input type="button" value="🞮" style={styles.X} onClick={this.props.clearFilters}/>:
-                            null
+                    searchInputValue!==''||pickedTypeToDisplay!=='all' &&
+                    <input type="button" value="🞮" style={styles.X} onClick={clearFilters}/>
                 }
-                <select style={styles.inputs} onChange={this.props.changeSelect} value={this.props.pickedTypeToDisplay}>
+                <select style={styles.inputs} onChange={changeSelect} value={pickedTypeToDisplay}>
                     <option value="all" key="0">all</option>
-                    {/* {document.addEventListener("scroll",(e)=>{this.setState({scrolled:window.scrollY})})} */}
-                    {
-                        Array.from(this.state.allTypes).map((y,i)=>
-                            <option value={y.name} key={i}>
-                                {y.name}
-                            </option>
-                        )
-                    }
+                    {allTypes?.map(({name})=><option value={name} key={name}>{name}</option>)}
                 </select>
             </div>
         );

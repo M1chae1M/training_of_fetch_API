@@ -8,7 +8,7 @@ export default class PokemonCardRender extends React.Component{
     }
     render(){
         const {loadingState}=this.state
-        const {cardWidth,cardHeight,fullScreen,height,base_experience,abilities,stats}=this.props
+        const {cardWidth,cardHeight,fullScreen,height,base_experience,abilities,stats,ID,name,type}=this.props
         const styles={
             PokemonCardRender:{
                 border:'solid 1px var(--pokemonCardBorderColor)',
@@ -70,15 +70,15 @@ export default class PokemonCardRender extends React.Component{
             <>
                     <div className="PokemonCard" style={styles.PokemonCardRender}>
                         {
-                            this.state.loadingState?
+                            loadingState?
                             <>
                                     <div id="imgDiv" style={styles.imgDiv}>
                                         {
-                                            this.state.loadingState &&
+                                            loadingState &&
                                             <div>loading...</div>
                                         }
                                         <img
-                                            src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.props.ID+".png"}
+                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ID}.png`}
                                             onLoad={()=>this.setState({loadingState:false})}
                                             style={styles.img}
                                             alt=""
@@ -111,21 +111,16 @@ export default class PokemonCardRender extends React.Component{
                                         <Link href={`/pokemons/${this.props.name}`}>
                                             <div id="imgDiv" style={styles.imgDiv}>
                                                 <img
-                                                    src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.props.ID+".png"}
+                                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ID}.png`}
                                                     style={styles.img}
                                                     alt=""
                                                 />
                                             </div>
                                         </Link>
                                         <div id="Data" style={styles.Data}>
-                                            <DataLine header="ID:" content={this.props.ID}/>
-                                            <DataLine header="Name:" content={this.props.name}/>
-                                            <DataLine header="Type:"
-                                                content={
-                                                    this.props.type &&
-                                                    Array.from(this.props.type).map((x,i)=>(i!==0?', ':' ')+ x.type.name)
-                                                }
-                                            />
+                                            <DataLine header="ID:" content={ID}/>
+                                            <DataLine header="Name:" content={name}/>
+                                            <DataLine header="Type:" content={type?.map((x,i)=>(i!==0?', ':' ')+ x.type.name)}/>
                                             <DataLine header="Weight:" content={this.props.weight+' kg'}/>
                                             {
                                                 height &&
@@ -137,9 +132,7 @@ export default class PokemonCardRender extends React.Component{
                                             }
                                             {
                                                 abilities &&
-                                                    <DataLine header="Abilities:" content={
-                                                        abilities.map((x,i)=>(i!==0?', ':' ')+ x.ability.name)
-                                                    }/>
+                                                    <DataLine header="Abilities:" content={abilities?.map((x,i)=>(i!==0?', ':' ')+ x.ability.name)}/>
                                             }
                                             {
                                                 stats &&
