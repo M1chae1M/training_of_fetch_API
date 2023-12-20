@@ -10,7 +10,7 @@ export default class Menu extends React.Component{
         .then(({types})=>this.setState({allTypes:types}))
     }
     render(){
-        const {onchangeinput,searchedName,pickedTypeToDisplay,clearFilters,changeSelect}=this.props
+        const {onchangeinput,searchedName,showType,clearFilters,changeSelect}=this.props
         const {allTypes}=this.state
         const styles={
             Menu:{
@@ -62,10 +62,10 @@ export default class Menu extends React.Component{
                     style={styles.SearchInputComponent}
                 />
                 {
-                    searchedName!==''||pickedTypeToDisplay!=='all' &&
+                    searchedName!==''||showType!=='all' &&
                     <input type="button" value="🞮" style={styles.X} onClick={clearFilters}/>
                 }
-                <select style={styles.inputs} onChange={changeSelect} value={pickedTypeToDisplay}>
+                <select style={styles.inputs} onChange={changeSelect} value={showType}>
                     <option value="all" key="0">all</option>
                     {allTypes?.map(({name},i)=><option value={name}
                         key={i}

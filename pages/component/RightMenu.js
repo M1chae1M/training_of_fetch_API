@@ -5,7 +5,7 @@ export default class RightMenu extends React.Component{
         showInput:false,
     }
     render(){
-        const {PageLimit,debounce}=this.props
+        const {pageLimit,debounce}=this.props
         const {showInput}=this.state
         const styles={
             main:{
@@ -48,7 +48,7 @@ export default class RightMenu extends React.Component{
                 <input
                     type="number"
                     style={styles.input}
-                    defaultValue={PageLimit}
+                    defaultValue={pageLimit}
                     placeholder='Number of displayed pokemons'
                     onChange={debounce}
                 />

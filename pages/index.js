@@ -6,7 +6,7 @@ export default class RenderAndApiURL extends Component{
     state={
         allPokemons:[],
         pageID:0,
-        PageLimit:100,
+        pageLimit:100,
         testState:false,
     }
     fetchFunction=(targ)=>{
@@ -24,18 +24,18 @@ export default class RenderAndApiURL extends Component{
             this.setState({allPokemons:[]})
         }
     }
-    componentDidMount=()=>this.fetchFunction(this.state.PageLimit);
+    componentDidMount=()=>this.fetchFunction(this.state.pageLimit);
     render(){
-        const {PageLimit,allPokemons}=this.state
+        const {pageLimit,allPokemons}=this.state
         let timeoutID;
         const debounce=(e)=>{
             const {value}=e.target;
             timeoutID && clearTimeout(timeoutID);
             timeoutID=setTimeout(()=>{
                 this.fetchFunction(parseInt(value));
-                this.setState({PageLimit:parseInt(value)});
+                this.setState({pageLimit:parseInt(value)});
             },1000);
         }
-        return <App PageLimit={PageLimit} allFetches={allPokemons} debounce={debounce}/>
+        return <App pageLimit={pageLimit} allFetches={allPokemons} debounce={debounce}/>
     }
 }
