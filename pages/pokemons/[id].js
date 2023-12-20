@@ -18,17 +18,17 @@ export const getStaticProps=async({params})=>({props:{id:params.id}})
 
 export default class Pokemon extends Component{
     state={
-        newObject:[],
+        pokemon_data:[],
         loadingState:false,
     }
     componentDidMount(){
         const {id}=this.props
         const newURL=`${URL}/pokemon/${id}`
-        axios.get(newURL).then(({data})=>this.setState({newObject:data}))
+        axios.get(newURL).then(({data})=>this.setState({pokemon_data:data}))
     }
     render(){
-        const {newObject,loadingState}=this.state
-        const {id}=newObject
+        const {pokemon_data,loadingState}=this.state
+        const {id}=pokemon_data
         const styles={
             App:{
                 width:'100vw',
@@ -73,7 +73,7 @@ export default class Pokemon extends Component{
         }
         return(
             <div id="App" style={styles.App}>
-                <PokemonCardRender fullScreen={true} pokemon_data={newObject} ID={id} cardHeight="80vh" cardWidth="50vw"/>
+                <PokemonCardRender fullScreen={true} pokemon_data={pokemon_data} ID={id} cardHeight="80vh" cardWidth="50vw"/>
                 <Link href={'/'}><div style={styles.backButton}>↩️</div></Link>
             </div>
         )
