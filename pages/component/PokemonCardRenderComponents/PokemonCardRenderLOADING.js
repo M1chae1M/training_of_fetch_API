@@ -21,13 +21,13 @@ const PokemonCardRenderLOADING=({children,fullScreen,cardHeight,abilities,height
                 <DataLine header="Name:" content="loading..."/>
                 <DataLine header="Type:" content="loading..."/>
                 <DataLine header="Weight:" content="loading..."/>
-                {height &&
+                {height && fullScreen &&
                 <DataLine header="Height:" content="loading..."/>}
-                {base_experience &&
+                {base_experience && fullScreen &&
                 <DataLine header="Base experience:" content="loading..."/>}
-                {abilities &&
+                {abilities && fullScreen &&
                 <DataLine header="Abilities:" content="loading..."/>}
-                {stats &&
+                {stats && fullScreen &&
                 <DataLine header="Stats:" content="loading..."/>}
             </div>
         </>
