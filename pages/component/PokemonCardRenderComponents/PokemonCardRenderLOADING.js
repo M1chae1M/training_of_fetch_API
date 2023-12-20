@@ -1,6 +1,6 @@
 import DataLine from "./DataLine"
 
-const PokemonCardRenderLOADING=({children,fullScreen,cardHeight})=>{
+const PokemonCardRenderLOADING=({children,fullScreen,cardHeight,abilities,height,stats,base_experience})=>{
     const styles={
         display:'grid',
         justifyItems:!fullScreen && 'center',
@@ -21,10 +21,14 @@ const PokemonCardRenderLOADING=({children,fullScreen,cardHeight})=>{
                 <DataLine header="Name:" content="loading..."/>
                 <DataLine header="Type:" content="loading..."/>
                 <DataLine header="Weight:" content="loading..."/>
-                <DataLine header="Height:" content="loading..."/>
-                <DataLine header="Base experience:" content="loading..."/>
-                <DataLine header="Abilities:" content="loading..."/>
-                <DataLine header="Stats:" content="loading..."/>
+                {height &&
+                <DataLine header="Height:" content="loading..."/>}
+                {base_experience &&
+                <DataLine header="Base experience:" content="loading..."/>}
+                {abilities &&
+                <DataLine header="Abilities:" content="loading..."/>}
+                {stats &&
+                <DataLine header="Stats:" content="loading..."/>}
             </div>
         </>
     )

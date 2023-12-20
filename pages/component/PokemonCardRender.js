@@ -11,7 +11,8 @@ export default class PokemonCardRender extends React.Component{
     render(){
         const {loadingState}=this.state
         const {cardWidth,cardHeight,fullScreen,
-            height,base_experience,abilities,stats,ID,name,type,weight,
+            height,base_experience,abilities,stats,
+            ID,name,type,weight,
         
             // newObject
         }=this.props
