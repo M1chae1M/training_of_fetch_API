@@ -1,4 +1,4 @@
-import React from "react";
+import {Component} from "react";
 import axios from "axios";
 import Link from "next/link";
 import PokemonCardRender from "../component/PokemonCardRender";
@@ -15,7 +15,7 @@ export async function getStaticPaths(){
 
 export const getStaticProps=async({params})=>({props:{id:params.id}})
 
-export default class Pokemon extends React.Component{
+export default class Pokemon extends Component{
     state={
         newObject:[],
         loadingState:false,
