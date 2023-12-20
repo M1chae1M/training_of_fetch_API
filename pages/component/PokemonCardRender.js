@@ -8,7 +8,7 @@ export default class PokemonCardRender extends React.Component{
     }
     render(){
         const {loadingState}=this.state
-        const {cardWidth,cardHeight,fullScreen}=this.props
+        const {cardWidth,cardHeight,fullScreen,height,base_experience,abilities,stats}=this.props
         const styles={
             PokemonCardRender:{
                 border:'solid 1px var(--pokemonCardBorderColor)',
@@ -122,35 +122,34 @@ export default class PokemonCardRender extends React.Component{
                                             <DataLine header="Name:" content={this.props.name}/>
                                             <DataLine header="Type:"
                                                 content={
-                                                    this.props.type?
-                                                    Array.from(this.props.type).map((x,i)=>(i!==0?', ':' ')+ x.type.name):
-                                                    null
+                                                    this.props.type &&
+                                                    Array.from(this.props.type).map((x,i)=>(i!==0?', ':' ')+ x.type.name)
                                                 }
                                             />
                                             <DataLine header="Weight:" content={this.props.weight+' kg'}/>
                                             {
-                                                this.props.height &&
-                                                    <DataLine header="Height:" content={this.props.height+' m'}/>
+                                                height &&
+                                                    <DataLine header="Height:" content={height+' m'}/>
                                             }
                                             {
-                                                this.props.base_experience &&
-                                                    <DataLine header="Base experience:" content={this.props.base_experience}/>
+                                                base_experience &&
+                                                    <DataLine header="Base experience:" content={base_experience}/>
                                             }
                                             {
-                                                this.props.abilities &&
+                                                abilities &&
                                                     <DataLine header="Abilities:" content={
-                                                        this.props.abilities.map((x,i)=>(i!==0?', ':' ')+ x.ability.name)
+                                                        abilities.map((x,i)=>(i!==0?', ':' ')+ x.ability.name)
                                                     }/>
                                             }
                                             {
-                                                this.props.stats &&
+                                                stats &&
                                                         <div id="Stats" style={styles.Stats}>
                                                             <a href style={styles.bolded}>Stats:</a>
                                                             <ul style={styles.ul}>
                                                                 {
-                                                                    this.props.stats.map((x,i)=>
-                                                                        <li style={styles.li}>
-                                                                        <DataLine header={x.stat.name+":"} content={x.base_stat}/>
+                                                                    stats.map((x,i)=>
+                                                                        <li style={styles.li} key={x.stat.name}>
+                                                                            <DataLine header={x.stat.name+":"} content={x.base_stat}/>
                                                                         </li>
                                                                     )
                                                                 }
