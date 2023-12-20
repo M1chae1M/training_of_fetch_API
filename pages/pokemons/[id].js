@@ -27,8 +27,7 @@ export default class Pokemon extends React.Component{
     }
     render(){
         const {newObject,loadingState}=this.state
-        const {name,types,id,weight,abilities,height,stats,base_experience}=newObject
-        console.log(newObject)
+        const {id}=newObject
         const styles={
             App:{
                 width:'100vw',
@@ -73,11 +72,7 @@ export default class Pokemon extends React.Component{
         }
         return(
             <div id="App" style={styles.App}>
-                <PokemonCardRender
-                fullScreen={true}
-name={name} type={types} ID={id} weight={weight} abilities={abilities} height={height} stats={stats} base_experience={base_experience}
-                cardHeight="80vh" cardWidth="50vw"
-                />
+                <PokemonCardRender fullScreen={true} pokemon_data={newObject} ID={id} cardHeight="80vh" cardWidth="50vw"/>
                 <Link href={'/'}><div style={styles.backButton}>↩️</div></Link>
             </div>
         )
